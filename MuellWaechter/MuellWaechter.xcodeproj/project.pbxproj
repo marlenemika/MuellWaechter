@@ -1,0 +1,404 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		BF65596E29D483B5000C93F0 /* MuellWaechterApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF65596D29D483B5000C93F0 /* MuellWaechterApp.swift */; };
+		BF65597029D483B5000C93F0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF65596F29D483B5000C93F0 /* ContentView.swift */; };
+		BF65597229D483B8000C93F0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BF65597129D483B8000C93F0 /* Assets.xcassets */; };
+		BF65597529D483B8000C93F0 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BF65597429D483B8000C93F0 /* Preview Assets.xcassets */; };
+		BF65597C29D48426000C93F0 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF65597B29D48426000C93F0 /* HomeView.swift */; };
+		BF65597E29D48462000C93F0 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF65597D29D48462000C93F0 /* DataModel.swift */; };
+		BF65598029D48482000C93F0 /* ImagePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF65597F29D48482000C93F0 /* ImagePickerView.swift */; };
+		BF65598229D484B9000C93F0 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF65598129D484B9000C93F0 /* Coordinator.swift */; };
+		BF65598429D484D1000C93F0 /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF65598329D484D1000C93F0 /* ImageView.swift */; };
+		BF65598829D48512000C93F0 /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF65598729D48512000C93F0 /* Camera.swift */; };
+		BF65598A29D4853B000C93F0 /* ViewfinderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF65598929D4853B000C93F0 /* ViewfinderView.swift */; };
+		BF65598C29D48558000C93F0 /* SelectedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF65598B29D48558000C93F0 /* SelectedImageView.swift */; };
+		BF65598E29D4857C000C93F0 /* Labeling.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF65598D29D4857C000C93F0 /* Labeling.swift */; };
+		BF65599029D48597000C93F0 /* ObjectDetection.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF65598F29D48597000C93F0 /* ObjectDetection.swift */; };
+		BF65599229D485CE000C93F0 /* yolov7.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = BF65599129D485CE000C93F0 /* yolov7.mlmodel */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		BF65596A29D483B5000C93F0 /* MuellWaechter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MuellWaechter.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BF65596D29D483B5000C93F0 /* MuellWaechterApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MuellWaechterApp.swift; sourceTree = "<group>"; };
+		BF65596F29D483B5000C93F0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		BF65597129D483B8000C93F0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		BF65597429D483B8000C93F0 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		BF65597B29D48426000C93F0 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		BF65597D29D48462000C93F0 /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
+		BF65597F29D48482000C93F0 /* ImagePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerView.swift; sourceTree = "<group>"; };
+		BF65598129D484B9000C93F0 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		BF65598329D484D1000C93F0 /* ImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageView.swift; sourceTree = "<group>"; };
+		BF65598729D48512000C93F0 /* Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
+		BF65598929D4853B000C93F0 /* ViewfinderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewfinderView.swift; sourceTree = "<group>"; };
+		BF65598B29D48558000C93F0 /* SelectedImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedImageView.swift; sourceTree = "<group>"; };
+		BF65598D29D4857C000C93F0 /* Labeling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Labeling.swift; sourceTree = "<group>"; };
+		BF65598F29D48597000C93F0 /* ObjectDetection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectDetection.swift; sourceTree = "<group>"; };
+		BF65599129D485CE000C93F0 /* yolov7.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = yolov7.mlmodel; path = ../../../../../Downloads/yolov7.mlmodel; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		BF65596729D483B5000C93F0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		BF65596129D483B5000C93F0 = {
+			isa = PBXGroup;
+			children = (
+				BF65596C29D483B5000C93F0 /* MuellWaechter */,
+				BF65596B29D483B5000C93F0 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		BF65596B29D483B5000C93F0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BF65596A29D483B5000C93F0 /* MuellWaechter.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BF65596C29D483B5000C93F0 /* MuellWaechter */ = {
+			isa = PBXGroup;
+			children = (
+				BF65598629D484F6000C93F0 /* Camera */,
+				BF65598529D484EC000C93F0 /* ObjectDetection */,
+				BF65596D29D483B5000C93F0 /* MuellWaechterApp.swift */,
+				BF65596F29D483B5000C93F0 /* ContentView.swift */,
+				BF65597129D483B8000C93F0 /* Assets.xcassets */,
+				BF65597329D483B8000C93F0 /* Preview Content */,
+				BF65597B29D48426000C93F0 /* HomeView.swift */,
+				BF65597D29D48462000C93F0 /* DataModel.swift */,
+				BF65597F29D48482000C93F0 /* ImagePickerView.swift */,
+				BF65598129D484B9000C93F0 /* Coordinator.swift */,
+				BF65598329D484D1000C93F0 /* ImageView.swift */,
+			);
+			path = MuellWaechter;
+			sourceTree = "<group>";
+		};
+		BF65597329D483B8000C93F0 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				BF65597429D483B8000C93F0 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		BF65598529D484EC000C93F0 /* ObjectDetection */ = {
+			isa = PBXGroup;
+			children = (
+				BF65599129D485CE000C93F0 /* yolov7.mlmodel */,
+				BF65598D29D4857C000C93F0 /* Labeling.swift */,
+				BF65598F29D48597000C93F0 /* ObjectDetection.swift */,
+			);
+			path = ObjectDetection;
+			sourceTree = "<group>";
+		};
+		BF65598629D484F6000C93F0 /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+				BF65598729D48512000C93F0 /* Camera.swift */,
+				BF65598929D4853B000C93F0 /* ViewfinderView.swift */,
+				BF65598B29D48558000C93F0 /* SelectedImageView.swift */,
+			);
+			path = Camera;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		BF65596929D483B5000C93F0 /* MuellWaechter */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BF65597829D483B8000C93F0 /* Build configuration list for PBXNativeTarget "MuellWaechter" */;
+			buildPhases = (
+				BF65596629D483B5000C93F0 /* Sources */,
+				BF65596729D483B5000C93F0 /* Frameworks */,
+				BF65596829D483B5000C93F0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MuellWaechter;
+			productName = MuellWaechter;
+			productReference = BF65596A29D483B5000C93F0 /* MuellWaechter.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BF65596229D483B5000C93F0 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1420;
+				LastUpgradeCheck = 1420;
+				TargetAttributes = {
+					BF65596929D483B5000C93F0 = {
+						CreatedOnToolsVersion = 14.2;
+					};
+				};
+			};
+			buildConfigurationList = BF65596529D483B5000C93F0 /* Build configuration list for PBXProject "MuellWaechter" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = BF65596129D483B5000C93F0;
+			productRefGroup = BF65596B29D483B5000C93F0 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				BF65596929D483B5000C93F0 /* MuellWaechter */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		BF65596829D483B5000C93F0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BF65597529D483B8000C93F0 /* Preview Assets.xcassets in Resources */,
+				BF65597229D483B8000C93F0 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		BF65596629D483B5000C93F0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BF65598829D48512000C93F0 /* Camera.swift in Sources */,
+				BF65598A29D4853B000C93F0 /* ViewfinderView.swift in Sources */,
+				BF65597C29D48426000C93F0 /* HomeView.swift in Sources */,
+				BF65599229D485CE000C93F0 /* yolov7.mlmodel in Sources */,
+				BF65597E29D48462000C93F0 /* DataModel.swift in Sources */,
+				BF65598229D484B9000C93F0 /* Coordinator.swift in Sources */,
+				BF65597029D483B5000C93F0 /* ContentView.swift in Sources */,
+				BF65599029D48597000C93F0 /* ObjectDetection.swift in Sources */,
+				BF65596E29D483B5000C93F0 /* MuellWaechterApp.swift in Sources */,
+				BF65598C29D48558000C93F0 /* SelectedImageView.swift in Sources */,
+				BF65598E29D4857C000C93F0 /* Labeling.swift in Sources */,
+				BF65598429D484D1000C93F0 /* ImageView.swift in Sources */,
+				BF65598029D48482000C93F0 /* ImagePickerView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		BF65597629D483B8000C93F0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		BF65597729D483B8000C93F0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		BF65597929D483B8000C93F0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"MuellWaechter/Preview Content\"";
+				DEVELOPMENT_TEAM = Y39AY83W8X;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.arborsys.MuellWaechter;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		BF65597A29D483B8000C93F0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"MuellWaechter/Preview Content\"";
+				DEVELOPMENT_TEAM = Y39AY83W8X;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.arborsys.MuellWaechter;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		BF65596529D483B5000C93F0 /* Build configuration list for PBXProject "MuellWaechter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BF65597629D483B8000C93F0 /* Debug */,
+				BF65597729D483B8000C93F0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BF65597829D483B8000C93F0 /* Build configuration list for PBXNativeTarget "MuellWaechter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BF65597929D483B8000C93F0 /* Debug */,
+				BF65597A29D483B8000C93F0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BF65596229D483B5000C93F0 /* Project object */;
+}
