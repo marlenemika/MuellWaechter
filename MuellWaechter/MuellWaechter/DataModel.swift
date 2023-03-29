@@ -51,7 +51,7 @@ final class DataModel: NSObject,ObservableObject {
         }
     }
     
-    func handlePhotoPreview(image: CIImage) async {
+    func handlePhotoPreview(image: CIImage) {
         let observations = self.detector.detectAndProcess(image: image)
         let labeledImage = labeler.labelImage(image: UIImage(ciImage: image), observations: observations)!
         selectionImage = Image(uiImage: labeledImage)

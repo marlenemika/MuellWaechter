@@ -14,7 +14,8 @@ struct SelectedImageView: View {
             if let image = image {
                 image
                     .resizable()
-                    .scaledToFill()
+                    .scaledToFit()
+                    .padding()
                     .frame(width: geometry.size.width, height: geometry.size.height)
             }
         }

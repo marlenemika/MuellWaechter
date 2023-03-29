@@ -11,14 +11,31 @@ struct ImageView: View {
     @StateObject private var model = DataModel()
     
     @State var picture: Data?
+    @State var showLoadingScreen: Bool = false
+    @State var isRotating: Double = 0.0
     
     var body: some View {
         NavigationView {
-            GeometryReader { geometry in
-                SelectedImageView(image: $model.selectionImage)
+            if(!showLoadingScreen){
+                VStack(spacing: 50) {
+                    Text("Bild wird analysiert...").fontWeight(.bold)
+                    ProgressView()
+                        .progressViewStyle(CircularProgressViewStyle())
+                        .scaleEffect(2)
+                }
+            } else {
+                GeometryReader { geometry in
+                    SelectedImageView(image: $model.selectionImage)
+                }
             }
         }.task {
-            await model.handlePhotoPreview(image: CIImage(data: picture!)!)
+            Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { timer in
+                if(model.detector.ready) {
+                    model.handlePhotoPreview(image: CIImage(data: picture!)!)
+                    showLoadingScreen = true
+                    timer.invalidate()
+                }
+            }
         }
     }
 }
