@@ -36,14 +36,14 @@ struct HomeView: View {
                             self.useCase = 1
                         }
                         Button("Foto aufnehmen") {
-                            self.navigateTo = 2
+//                            self.navigateTo = 2
                             self.sourceType = .camera
                             self.showPhotosPicker = true
                             self.isActiveBio = true
                             self.useCase = 1
                         }
                         Button("Foto aus Galerie auswählen") {
-                            self.navigateTo = 2
+//                            self.navigateTo = 2
                             self.sourceType = .photoLibrary
                             self.showPhotosPicker = true
                             self.useCase = 1
@@ -73,15 +73,17 @@ struct HomeView: View {
                             self.useCase = 2
                         }
                         Button("Foto aufnehmen") {
-                            self.navigateTo = 2
+                            
                             self.sourceType = .camera
                             self.showPhotosPicker = true
-                            self.isActiveClassify = true
-                            self.useCase = 2
+                            
+//                            self.isActiveClassify = true
+//                            self.useCase = 2
+//                            self.navigateTo = 2
                         }
                         Button("Foto aus Galerie auswählen") {
-                            self.navigateTo = 2
                             self.sourceType = .photoLibrary
+//                            self.navigateTo = 2
                             self.showPhotosPicker = true
                             self.useCase = 2
                         }
@@ -112,9 +114,18 @@ struct HomeView: View {
                     })
                 }
             }
+            .onAppear {
+                print("appera main view")
+                navigateTo = -1
+            }
         }
+        
+        .onChange(of: sourceType, perform: { newValue in
+            print("changed source type")
+        })
         //.photosPicker(isPresented: $showPhotosPicker, selection: $selectedItem, matching: .images, photoLibrary: .shared())
         .onChange(of: selectedItem) { newItem in
+//            print(newItem?.pngData())
             Task {
                 // Retrieve selected asset in the form of Data
                 if let data = newItem?.pngData() {
@@ -127,8 +138,27 @@ struct HomeView: View {
                 }
             }
         }
-        .sheet(isPresented: $showPhotosPicker, content: {
-            ImagePickerView(selectedImage: $selectedItem, sourceType: self.sourceType).edgesIgnoringSafeArea(.bottom)
+        .sheet(isPresented: $showPhotosPicker, onDismiss: {
+            print("dismiss")
+            print(selectedImageData)
+//            self.isActiveClassify = true
+//            self.useCase = 2
+//            self.navigateTo = 2
+//            print(navigateTo)
+            
+
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+                print("image")
+                print(selectedImageData)
+                self.isActiveClassify = true
+                self.useCase = 2
+                self.navigateTo = 2
+            })
+            
+        }, content: {
+            if sourceType != nil {
+                ImagePickerView(selectedImage: $selectedItem, sourceType: self.sourceType).edgesIgnoringSafeArea(.bottom)
+            }
         })
         .sheet(isPresented: $sheetPresented, content: {
             NavigationView {

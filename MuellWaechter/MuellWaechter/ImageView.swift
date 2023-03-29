@@ -32,9 +32,11 @@ struct ImageView: View {
         }.task {
             Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { timer in
                 if(model.detector.ready) {
-                    model.handlePhotoPreview(image: CIImage(data: picture!)!)
-                    showLoadingScreen = true
-                    timer.invalidate()
+                    if(picture != nil) {
+                        model.handlePhotoPreview(image: CIImage(data: picture!)!)
+                        showLoadingScreen = true
+                        timer.invalidate()
+                    }
                 }
             }
         }
