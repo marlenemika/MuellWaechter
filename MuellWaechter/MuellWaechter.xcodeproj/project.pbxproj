@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		47104EFC29D4E47E0022E521 /* SwiftUIGIF in Frameworks */ = {isa = PBXBuildFile; productRef = 47104EFB29D4E47E0022E521 /* SwiftUIGIF */; };
+		47104EFE29D4E4BE0022E521 /* LoadingPop.gif in Resources */ = {isa = PBXBuildFile; fileRef = 47104EFD29D4E4BE0022E521 /* LoadingPop.gif */; };
 		BF65596E29D483B5000C93F0 /* MuellWaechterApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF65596D29D483B5000C93F0 /* MuellWaechterApp.swift */; };
 		BF65597029D483B5000C93F0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF65596F29D483B5000C93F0 /* ContentView.swift */; };
 		BF65597229D483B8000C93F0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BF65597129D483B8000C93F0 /* Assets.xcassets */; };
@@ -25,6 +27,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		47104EFD29D4E4BE0022E521 /* LoadingPop.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = LoadingPop.gif; path = ../../../../Downloads/LoadingPop.gif; sourceTree = "<group>"; };
 		BF65596A29D483B5000C93F0 /* MuellWaechter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MuellWaechter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF65596D29D483B5000C93F0 /* MuellWaechterApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MuellWaechterApp.swift; sourceTree = "<group>"; };
 		BF65596F29D483B5000C93F0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -48,6 +51,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				47104EFC29D4E47E0022E521 /* SwiftUIGIF in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -73,6 +77,7 @@
 		BF65596C29D483B5000C93F0 /* MuellWaechter */ = {
 			isa = PBXGroup;
 			children = (
+				47104EFD29D4E4BE0022E521 /* LoadingPop.gif */,
 				BF65598629D484F6000C93F0 /* Camera */,
 				BF65598529D484EC000C93F0 /* ObjectDetection */,
 				BF65596D29D483B5000C93F0 /* MuellWaechterApp.swift */,
@@ -132,6 +137,9 @@
 			dependencies = (
 			);
 			name = MuellWaechter;
+			packageProductDependencies = (
+				47104EFB29D4E47E0022E521 /* SwiftUIGIF */,
+			);
 			productName = MuellWaechter;
 			productReference = BF65596A29D483B5000C93F0 /* MuellWaechter.app */;
 			productType = "com.apple.product-type.application";
@@ -160,6 +168,9 @@
 				Base,
 			);
 			mainGroup = BF65596129D483B5000C93F0;
+			packageReferences = (
+				47104EFA29D4E47E0022E521 /* XCRemoteSwiftPackageReference "swiftui-gif" */,
+			);
 			productRefGroup = BF65596B29D483B5000C93F0 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -174,6 +185,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				47104EFE29D4E4BE0022E521 /* LoadingPop.gif in Resources */,
 				BF65597529D483B8000C93F0 /* Preview Assets.xcassets in Resources */,
 				BF65597229D483B8000C93F0 /* Assets.xcassets in Resources */,
 			);
@@ -399,6 +411,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		47104EFA29D4E47E0022E521 /* XCRemoteSwiftPackageReference "swiftui-gif" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/globulus/swiftui-gif";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		47104EFB29D4E47E0022E521 /* SwiftUIGIF */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 47104EFA29D4E47E0022E521 /* XCRemoteSwiftPackageReference "swiftui-gif" */;
+			productName = SwiftUIGIF;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = BF65596229D483B5000C93F0 /* Project object */;
 }

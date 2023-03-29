@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftUIGIF
 
 struct ImageView: View {
     @StateObject private var model = DataModel()
@@ -17,11 +18,11 @@ struct ImageView: View {
     var body: some View {
         NavigationView {
             if(!showLoadingScreen){
-                VStack(spacing: 50) {
+                VStack(alignment: .center) {
                     Text("Bild wird analysiert...").fontWeight(.bold)
-                    ProgressView()
-                        .progressViewStyle(CircularProgressViewStyle())
-                        .scaleEffect(2)
+                        .padding(.top, 250)
+                    GIFImage(name: "LoadingPop")
+                        .frame(width: 100)
                 }
             } else {
                 GeometryReader { geometry in
