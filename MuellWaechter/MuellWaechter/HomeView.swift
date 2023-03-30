@@ -35,14 +35,11 @@ struct HomeView: View {
                             self.useCase = 1
                         }
                         Button("Foto aufnehmen") {
-//                            self.navigateTo = 2
                             self.sourceType = .camera
                             self.showPhotosPicker = true
-                            self.isActiveBio = true
                             self.useCase = 1
                         }
                         Button("Foto aus Galerie auswählen") {
-//                            self.navigateTo = 2
                             self.sourceType = .photoLibrary
                             self.showPhotosPicker = true
                             self.useCase = 1
@@ -74,6 +71,7 @@ struct HomeView: View {
                         Button("Foto aufnehmen") {
                             self.sourceType = .camera
                             self.showPhotosPicker = true
+                            self.useCase = 2
                         }
                         Button("Foto aus Galerie auswählen") {
                             self.sourceType = .photoLibrary
@@ -113,6 +111,8 @@ struct HomeView: View {
                 selectedImageData = nil
             }
         }
+        .onChange(of: sourceType) {newItem in print("sourceType changed")}
+        
         .onChange(of: selectedItem) { newItem in
             Task {
                 // Retrieve selected asset in the form of Data
@@ -134,8 +134,11 @@ struct HomeView: View {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
                     print("image")
                     print(selectedImageData)
-                    self.isActiveClassify = true
-                    self.useCase = 2
+//                    if (self.useCase == 1) {
+//                        self.isActiveBio = true
+//                    } else if (self.useCase == 2) {
+//                        self.isActiveClassify = true
+//                    }
                     self.navigateTo = 2
                 })
             }
