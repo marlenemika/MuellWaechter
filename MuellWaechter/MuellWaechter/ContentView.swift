@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
+    @Environment(\.colorScheme) private var colorScheme
     @StateObject private var model = DataModel()
     
     @State var useCase: Int
@@ -16,31 +17,28 @@ struct ContentView: View {
     var body: some View {
         
         NavigationView {
-            ZStack() {
+            VStack {
                 ViewfinderView(image: $model.viewfinderImage)
                     .overlay(alignment: .top) {
                         Rectangle()
                             .size(width: 500, height: 150)
-                            .fill(Color(.black).opacity(0.7))
+                            .fill(colorScheme == .light ? Color(.white).opacity(0.7) : Color(.black).opacity(0.7))
                     }
-                VStack() {
-                    Spacer()
-                    Text("Test")
-                        .foregroundColor(.pink)
-                        .background(.black.opacity(0.7))
-                }
-                .toolbar(content: {
-                    Button {
-                        model.camera.switchCaptureDevice()
-                    } label: {
-                        Label("Switch Camera", systemImage: "arrow.triangle.2.circlepath")
-                            .font(.system(size: 36, weight: .bold))
-                            .foregroundColor(.white)
-                    }
-                        .buttonStyle(.plain)
-                        .labelStyle(.iconOnly)
-                })
+                    
+                    Text(model.observationsInfo)
+                        .padding()
             }
+            .toolbar(content: {
+                Button {
+                    model.camera.switchCaptureDevice()
+                } label: {
+                    Label("Switch Camera", systemImage: "arrow.triangle.2.circlepath")
+                        .font(.system(size: 36, weight: .bold))
+                        .foregroundColor(colorScheme == .light ? Color(.black) : Color(.white))
+                }
+                .buttonStyle(.plain)
+                .labelStyle(.iconOnly)
+            })
             .task {
                 model.useCase = useCase
                 await model.camera.start()

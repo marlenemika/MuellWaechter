@@ -70,10 +70,10 @@ class DataModel: NSObject,ObservableObject {
         }))) {
             // check bio waste
             if (useCase == 1) {
-                observationsInfo = "Entferne die markierten Gegenstände aus deinem Biomüll."
+                observationsInfo = "Entferne die markierten Gegenstände aus deinem Biomüll.\n"
             // classify objects
             } else if (useCase == 2) {
-                observationsInfo = "Bei den markierten Gegenständen handelt es sich um Nicht-Biomüll."
+                observationsInfo = "Bei den markierten Gegenständen handelt es sich um Nicht-Biomüll.\n"
             }
         }
         
@@ -85,7 +85,7 @@ class DataModel: NSObject,ObservableObject {
         }))) {
             // classify objects
             if (useCase == 2) {
-                observationsInfo = "Bei den markierten Gegenständen handelt es sich um Biomüll."
+                observationsInfo = "Bei den markierten Gegenständen handelt es sich um Biomüll.\n"
             }
         }
         
@@ -109,13 +109,12 @@ class DataModel: NSObject,ObservableObject {
         }))) {
             // check bio waste
             if (useCase == 1) {
-                observationsInfo = "Es wurden keine Fremdstoffe im Müll erkannt."
+                observationsInfo = "Es wurden keine Fremdstoffe im Müll erkannt.\n"
             // classify objects
             } else if (useCase == 2) {
-                observationsInfo = "Es wurden keine Objekte erkannt."
+                observationsInfo = "Es wurden keine Objekte erkannt.\n"
             }
         }
-        print(observationsInfo)
     }
 
     private func unpackPhoto(_ photo: AVCapturePhoto) -> PhotoData? {

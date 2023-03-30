@@ -28,7 +28,11 @@ struct ImageView: View {
                 }
             } else {
                 GeometryReader { geometry in
-                    SelectedImageView(image: $model.selectionImage)
+                    VStack {
+                        SelectedImageView(image: $model.selectionImage)
+                        Text(model.observationsInfo)
+                            .padding()
+                    }
                 }
             }
         }.task {
@@ -46,7 +50,6 @@ struct ImageView: View {
             if (picture == nil) {
                 dismiss()
             }
-            print(useCase)
             model.useCase = useCase
         }
         .onDisappear {
