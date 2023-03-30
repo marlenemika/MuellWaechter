@@ -13,9 +13,8 @@ class DataModel: NSObject,ObservableObject {
     var detector = ObjectDetection()
     var labeler = Labeling()
     
-    @State var observationsInfo: String = "test"
-    @State var useCase: Int?
-    
+    @Published var observationsInfo: String = ""
+    @Published var useCase: Int?
     @Published var viewfinderImage: Image?
     @Published var selectionImage: Image?
     @Published var thumbnailImage: Image?
@@ -45,7 +44,6 @@ class DataModel: NSObject,ObservableObject {
     }
     
     func handlePhotoPreview(image: CIImage, useCase: Int) {
-        print("called")
         let observations = self.detector.detectAndProcess(image: image, useCase: useCase)
         adjustObservationsInfo(observations: observations)
         let labeledImage = labeler.labelImage(image: UIImage(ciImage: image), observations: observations)!
@@ -76,8 +74,6 @@ class DataModel: NSObject,ObservableObject {
             // classify objects
             } else if (useCase == 2) {
                 observationsInfo = "Bei den markierten Gegenständen handelt es sich um Nicht-Biomüll."
-            } else if (useCase == -1) {
-                print("lol")
             }
         }
         
@@ -101,7 +97,7 @@ class DataModel: NSObject,ObservableObject {
         }))) {
             // classify objects
             if (useCase == 2) {
-                observationsInfo = "Bei den grün markierten Gegenständen handelt es sich um Biomüll.\n Bei den rot markierten Gegenständen handelt es sich um Nicht-Biomüll."
+                observationsInfo = "Bei den grün markierten Gegenständen handelt es sich um Biomüll.\nBei den rot markierten Gegenständen handelt es sich um Nicht-Biomüll."
             }
         }
         
