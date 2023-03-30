@@ -70,7 +70,7 @@ class DataModel: NSObject,ObservableObject {
         }))) {
             // check bio waste
             if (useCase == 1) {
-                observationsInfo = "Entferne die markierten Gegenstände aus deinem Biomüll.\n"
+                observationsInfo = "Bei den markierten Gegenständen handelt es sich um Nicht-Biomüll.\nBitte aus dem Biomüll entfernen.\n"
             // classify objects
             } else if (useCase == 2) {
                 observationsInfo = "Bei den markierten Gegenständen handelt es sich um Nicht-Biomüll.\n"
