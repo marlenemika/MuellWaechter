@@ -8,10 +8,12 @@
 import AVFoundation
 import SwiftUI
 
-final class DataModel: NSObject,ObservableObject {
+class DataModel: NSObject,ObservableObject {
     let camera = Camera()
     var detector = ObjectDetection()
     var labeler = Labeling()
+    
+    @State var useCase: Int = -1
     
     @Published var viewfinderImage: Image?
     @Published var selectionImage: Image?
@@ -19,18 +21,7 @@ final class DataModel: NSObject,ObservableObject {
     
     var isPhotosLoaded = false
     
-    override init() {
-        super.init()
-        Task {
-            await handleCameraPreviews()
-        }
-        
-        Task {
-            await handleCameraPhotos()
-        }
-    }
-    
-    func handleCameraPreviews() async {
+    func handleCameraPreviews(useCase: Int) async {
         let imageStream = camera.previewStream
             .map { $0 }
 
@@ -42,7 +33,7 @@ final class DataModel: NSObject,ObservableObject {
                     return
                 }
                 camera.isPreviewPaused = true
-                let observations = self.detector.detectAndProcess(image: image)
+                let observations = self.detector.detectAndProcess(image: image, useCase: useCase)
                 let labeledImage = labeler.labelImage(image: UIImage(ciImage: image), observations: observations)!
                 viewfinderImage = Image(uiImage: labeledImage)
                 camera.isPreviewPaused = false
@@ -51,8 +42,8 @@ final class DataModel: NSObject,ObservableObject {
         }
     }
     
-    func handlePhotoPreview(image: CIImage) {
-        let observations = self.detector.detectAndProcess(image: image)
+    func handlePhotoPreview(image: CIImage, useCase: Int) {
+        let observations = self.detector.detectAndProcess(image: image, useCase: useCase)
         let labeledImage = labeler.labelImage(image: UIImage(ciImage: image), observations: observations)!
         selectionImage = Image(uiImage: labeledImage)
     }
@@ -74,7 +65,7 @@ final class DataModel: NSObject,ObservableObject {
         
         guard let detImage = CIImage(data: imageData,options: [.applyOrientationProperty:true]) else {return nil}
         
-        let observations = self.detector.detectAndProcess(image: detImage)
+        let observations = self.detector.detectAndProcess(image: detImage, useCase: -1)
         let labeledImage = labeler.labelImage(image: UIImage(ciImage: detImage), observations: observations)!
         
         let thumbnailImage = Image(uiImage: labeledImage)

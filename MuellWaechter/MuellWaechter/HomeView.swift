@@ -26,7 +26,7 @@ struct HomeView: View {
                 colorScheme == .light ? Image("background0").resizable().frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height).blur(radius: 3).opacity(0.4) : Image("background1").resizable().frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height).blur(radius: 3).opacity(0.4)
                 
                 VStack {
-                    Text("Abfallklassifizierer").font(.largeTitle).fontWeight(.bold).background(colorScheme == .light ? .white : .black).cornerRadius(10)
+                    Text("Müll Wächter").font(.largeTitle).fontWeight(.bold).background(colorScheme == .light ? .white : .black).cornerRadius(10)
                     
                     Menu {
                         Button("Live Ansicht") {
@@ -168,9 +168,9 @@ struct HomeView: View {
     @ViewBuilder
     func returnView(num: Int) -> some View {
         if (num == 1) {
-            ContentView()
+            ContentView(useCase: useCase)
         } else if (num == 2) {
-            ImageView(picture: selectedImageData)
+            ImageView(useCase: useCase, picture: selectedImageData)
         }
     }
 }

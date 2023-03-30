@@ -12,6 +12,7 @@ struct ImageView: View {
     @StateObject private var model = DataModel()
     @Environment(\.dismiss) var dismiss
     
+    @State var useCase: Int
     @State var picture: Data?
     @State var showLoadingScreen: Bool = false
     @State var isRotating: Double = 0.0
@@ -34,7 +35,7 @@ struct ImageView: View {
             Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { timer in
                 if(model.detector.ready) {
                     if(picture != nil) {
-                        model.handlePhotoPreview(image: CIImage(data: picture!)!)
+                        model.handlePhotoPreview(image: CIImage(data: picture!)!, useCase: useCase)
                         showLoadingScreen = true
                         timer.invalidate()
                     }
@@ -49,11 +50,5 @@ struct ImageView: View {
         .onDisappear {
             picture = nil
         }
-    }
-}
-
-struct ImageView_Previews: PreviewProvider {
-    static var previews: some View {
-        ImageView()
     }
 }

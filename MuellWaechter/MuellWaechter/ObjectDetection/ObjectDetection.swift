@@ -30,11 +30,11 @@ class ObjectDetection{
         }
     }
     
-    func detectAndProcess(image:CIImage)-> [ProcessedObservation]{
+    func detectAndProcess(image: CIImage, useCase: Int)-> [ProcessedObservation]{
         
         let observations = self.detect(image: image)
         
-        let processedObservations = self.processObservation(observations: observations, viewSize: image.extent.size)
+        let processedObservations = self.processObservation(observations: observations, viewSize: image.extent.size, useCase: useCase)
         
         return processedObservations
     }
@@ -57,7 +57,7 @@ class ObjectDetection{
     }
     
     
-    func processObservation(observations:[VNObservation], viewSize:CGSize) -> [ProcessedObservation]{
+    func processObservation(observations:[VNObservation], viewSize:CGSize, useCase: Int) -> [ProcessedObservation]{
        
         var processedObservations:[ProcessedObservation] = []
         
@@ -73,7 +73,11 @@ class ObjectDetection{
             
             let processedOD = ProcessedObservation(label: label, confidence: objectObservation.confidence, boundingBox: flippedBox)
             
-            processedObservations.append(processedOD)
+            if (label == "1" && useCase == 1) {
+                continue
+            } else {
+                processedObservations.append(processedOD)
+            }
         }
         
         return processedObservations

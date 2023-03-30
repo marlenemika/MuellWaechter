@@ -10,9 +10,8 @@ import SwiftUI
 struct ContentView: View {
     @StateObject private var model = DataModel()
     
-    private static let barHeightFactor = 0.10
-    
-    @State private var isImageTaken = false
+    @State var useCase: Int
+    @State private var isImageTaken: Bool = false
     
     var body: some View {
         
@@ -43,7 +42,9 @@ struct ContentView: View {
                 })
             }
             .task {
+                model.useCase = useCase
                 await model.camera.start()
+                await model.handleCameraPreviews(useCase: useCase)
             }
             .ignoresSafeArea()
             .navigationTitle("Live Ansicht")
