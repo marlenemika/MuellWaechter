@@ -105,7 +105,7 @@ struct HomeView: View {
                 }
             }
             .onAppear {
-                print("appera main view")
+                print("appear main view")
                 navigateTo = -1
                 selectedItem = nil
                 selectedImageData = nil
