@@ -28,7 +28,6 @@ struct HomeView: View {
                 VStack {
                     Text("Abfallklassifizierer").font(.largeTitle).fontWeight(.bold).background(colorScheme == .light ? .white : .black).cornerRadius(10)
                     
-                    
                     Menu {
                         Button("Live Ansicht") {
                             self.navigateTo = 1
@@ -73,17 +72,11 @@ struct HomeView: View {
                             self.useCase = 2
                         }
                         Button("Foto aufnehmen") {
-                            
                             self.sourceType = .camera
                             self.showPhotosPicker = true
-                            
-//                            self.isActiveClassify = true
-//                            self.useCase = 2
-//                            self.navigateTo = 2
                         }
                         Button("Foto aus Galerie auswählen") {
                             self.sourceType = .photoLibrary
-//                            self.navigateTo = 2
                             self.showPhotosPicker = true
                             self.useCase = 2
                         }
@@ -104,7 +97,6 @@ struct HomeView: View {
                             destination: returnView(num: navigateTo), isActive: $isActiveClassify) {
                             }
                     )
-                    
                     .toolbar(content: {
                         Button(action: {
                             sheetPresented = true
@@ -117,15 +109,11 @@ struct HomeView: View {
             .onAppear {
                 print("appera main view")
                 navigateTo = -1
+                selectedItem = nil
+                selectedImageData = nil
             }
         }
-        
-        .onChange(of: sourceType, perform: { newValue in
-            print("changed source type")
-        })
-        //.photosPicker(isPresented: $showPhotosPicker, selection: $selectedItem, matching: .images, photoLibrary: .shared())
         .onChange(of: selectedItem) { newItem in
-//            print(newItem?.pngData())
             Task {
                 // Retrieve selected asset in the form of Data
                 if let data = newItem?.pngData() {
@@ -141,19 +129,16 @@ struct HomeView: View {
         .sheet(isPresented: $showPhotosPicker, onDismiss: {
             print("dismiss")
             print(selectedImageData)
-//            self.isActiveClassify = true
-//            self.useCase = 2
-//            self.navigateTo = 2
-//            print(navigateTo)
             
-
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
-                print("image")
-                print(selectedImageData)
-                self.isActiveClassify = true
-                self.useCase = 2
-                self.navigateTo = 2
-            })
+            if (selectedItem != nil) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+                    print("image")
+                    print(selectedImageData)
+                    self.isActiveClassify = true
+                    self.useCase = 2
+                    self.navigateTo = 2
+                })
+            }
             
         }, content: {
             if sourceType != nil {
@@ -179,13 +164,10 @@ struct HomeView: View {
     
     @ViewBuilder
     func returnView(num: Int) -> some View {
-        switch(num){
-        case 1:
+        if (num == 1) {
             ContentView()
-        case 2:
+        } else if (num == 2) {
             ImageView(picture: selectedImageData)
-        default:
-            EmptyView()
         }
     }
 }

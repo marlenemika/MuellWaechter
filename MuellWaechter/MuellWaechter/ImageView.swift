@@ -10,6 +10,7 @@ import SwiftUIGIF
 
 struct ImageView: View {
     @StateObject private var model = DataModel()
+    @Environment(\.dismiss) var dismiss
     
     @State var picture: Data?
     @State var showLoadingScreen: Bool = false
@@ -17,7 +18,7 @@ struct ImageView: View {
     
     var body: some View {
         NavigationView {
-            if(!showLoadingScreen){
+            if(!showLoadingScreen) {
                 VStack(alignment: .center) {
                     Text("Bild wird analysiert...").fontWeight(.bold)
                         .padding(.top, 250)
@@ -39,6 +40,14 @@ struct ImageView: View {
                     }
                 }
             }
+        }
+        .onAppear {
+            if (picture == nil) {
+                dismiss()
+            }
+        }
+        .onDisappear {
+            picture = nil
         }
     }
 }
