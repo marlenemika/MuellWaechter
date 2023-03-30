@@ -10,7 +10,7 @@ import Vision
 import CoreImage
 
 class ObjectDetection{
-    var detectionRequest:VNCoreMLRequest!
+    var detectionRequest: VNCoreMLRequest!
     var ready = false
     
     init(){
