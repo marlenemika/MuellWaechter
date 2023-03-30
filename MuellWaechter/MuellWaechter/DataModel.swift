@@ -14,7 +14,7 @@ class DataModel: NSObject,ObservableObject {
     var labeler = Labeling()
     
     @State var observationsInfo: String = "test"
-    @State var useCase: Int = -1
+    @State var useCase: Int?
     
     @Published var viewfinderImage: Image?
     @Published var selectionImage: Image?
@@ -45,6 +45,7 @@ class DataModel: NSObject,ObservableObject {
     }
     
     func handlePhotoPreview(image: CIImage, useCase: Int) {
+        print("called")
         let observations = self.detector.detectAndProcess(image: image, useCase: useCase)
         adjustObservationsInfo(observations: observations)
         let labeledImage = labeler.labelImage(image: UIImage(ciImage: image), observations: observations)!
@@ -63,45 +64,64 @@ class DataModel: NSObject,ObservableObject {
     }
     
     private func adjustObservationsInfo(observations: [ProcessedObservation]) {
+        // only non-organic waste detected
         if (observations.contains(where: { observation in
-            observation.label == "0" && useCase == 1
-        })) {
-            observationsInfo = "Entferne die markierten Gegenstände aus deinem Biomüll."
-        } else if (useCase == 1) {
-            observationsInfo = "Es wurden keine Fremdstoffe im Müll erkannt."
-        } else if (useCase == 2) {
-            // both organic and non-organic waste are detected
-            if (observations.contains(where: { observation in
-                observation.label == "0"
-            }) && (observations.contains(where: { observation in
-                observation.label == "1"
-            }))) {
-                observationsInfo = "Bei den grün markierten Gegenständen handelt es sich um Biomüll.\n Bei den rot markierten Gegenständen handelt es sich um Nicht-Biomüll."
-            // only non-organic waste is detected
-            } else if (observations.contains(where: { observation in
-                observation.label == "0"
-            }) && !(observations.contains(where: { observation in
-                observation.label == "1"
-            }))) {
+            observation.label == "0"
+        }) && !(observations.contains(where: { observation in
+            observation.label == "1"
+        }))) {
+            // check bio waste
+            if (useCase == 1) {
+                observationsInfo = "Entferne die markierten Gegenstände aus deinem Biomüll."
+            // classify objects
+            } else if (useCase == 2) {
                 observationsInfo = "Bei den markierten Gegenständen handelt es sich um Nicht-Biomüll."
-            // only organic waste is detected
-            } else if (observations.contains(where: { observation in
-                observation.label == "1"
-            }) && !(observations.contains(where: { observation in
-                observation.label == "0"
-            }))) {
+            } else if (useCase == -1) {
+                print("lol")
+            }
+        }
+        
+        // only organic waste detected
+        if (observations.contains(where: { observation in
+            observation.label == "1"
+        }) && !(observations.contains(where: { observation in
+            observation.label == "0"
+        }))) {
+            // classify objects
+            if (useCase == 2) {
                 observationsInfo = "Bei den markierten Gegenständen handelt es sich um Biomüll."
-            } else if (observations.count == 0) {
+            }
+        }
+        
+        // both organic and non-organic waste detected
+        if (observations.contains(where: { observation in
+            observation.label == "1"
+        }) && (observations.contains(where: { observation in
+            observation.label == "0"
+        }))) {
+            // classify objects
+            if (useCase == 2) {
+                observationsInfo = "Bei den grün markierten Gegenständen handelt es sich um Biomüll.\n Bei den rot markierten Gegenständen handelt es sich um Nicht-Biomüll."
+            }
+        }
+        
+        // neither organic nor non-organic waste detected
+        if (!observations.contains(where: { observation in
+            observation.label == "1"
+        }) && !(observations.contains(where: { observation in
+            observation.label == "0"
+        }))) {
+            // check bio waste
+            if (useCase == 1) {
+                observationsInfo = "Es wurden keine Fremdstoffe im Müll erkannt."
+            // classify objects
+            } else if (useCase == 2) {
                 observationsInfo = "Es wurden keine Objekte erkannt."
             }
         }
         print(observationsInfo)
     }
-    
-    /// nur bioabfall
-    /// nur nicht bio abfall
-    /// gemischt
-    
+
     private func unpackPhoto(_ photo: AVCapturePhoto) -> PhotoData? {
         if !self.detector.ready { return nil}
         guard let imageData = photo.fileDataRepresentation() else { return nil }

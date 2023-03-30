@@ -46,6 +46,8 @@ struct ImageView: View {
             if (picture == nil) {
                 dismiss()
             }
+            print(useCase)
+            model.useCase = useCase
         }
         .onDisappear {
             picture = nil
