@@ -24,7 +24,7 @@ struct HomeView: View {
     @State private var showObjects: Bool = false
     
     private var objectsBio: [String] = ["Eierschalen", "Eierkartons", "Küchenpapier", "Apfel", "Erde", "Gras", "Kaffeefilter", "Laub", "Sonnenblumen", "Federn\n"]
-    private var objectsNonBio: [String] = ["Plastiktüten", "Plastikflasche", "Plastikbecher", "Coladosen", "Batterien", "Masken", "Kieselsteine", "Keramikteller", "Tabletten", "Zigarettenstümmel"]
+    private var objectsNonBio: [String] = ["Plastiktüten", "Glas", "Plastikbecher", "Coladosen", "Batterien", "Masken", "Kieselsteine", "Keramikteller", "Tabletten", "Zigarettenstümmel"]
     
     var body: some View {
         NavigationView {
