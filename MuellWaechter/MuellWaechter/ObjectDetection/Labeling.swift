@@ -11,10 +11,16 @@ import SwiftUI
 class Labeling{
     
     private var labelColors: [String: CGColor] = [:]
-    
+    let labels = ["non-organic waste", "organic waste"]
     
     init(){
         self.labelColors = self.generateLabelColors()
+    }
+    
+    /// Set colours for bounding boxes
+    func generateLabelColors() -> [String: CGColor] {
+        let labelColor: [String: CGColor] = [labels[0]:CGColor(red: 255, green: 0, blue: 0, alpha: 1),labels[1]:CGColor(red: 0, green: 255, blue: 0, alpha: 1)]
+        return labelColor
     }
     
     func labelImage(image:UIImage,observations:[ProcessedObservation]) -> UIImage?{
@@ -28,17 +34,12 @@ class Labeling{
         
         for observation in observations{
             var labelColor: CGColor?
-            var labelText: String?
             if observation.label == "1" {
                 labelColor = labelColors["organic waste"]!
-                labelText = "organic"
             } else {
                 labelColor = labelColors["non-organic waste"]
-                labelText = "non-organic"
             }
-//            let labelColor = labelColors[observation.label]!
-            print(observation.confidence)
-            let label = labelText! + " " + String(format:"%.1f",observation.confidence*100)+"%"
+            let label = String(format:"%.1f",observation.confidence*100)+"%"
             let boundingBox = observation.boundingBox
             
             self.drawBox(context: context, bounds: boundingBox, color: labelColor!)
@@ -57,19 +58,43 @@ class Labeling{
         return myImage
     }
     
-    
+    /// Bounding Box
     func drawBox(context:CGContext, bounds:CGRect, color:CGColor){
         context.setStrokeColor(color)
         context.setLineWidth(bounds.height*0.02)
+        if bounds.height < 125 {
+            context.setLineWidth(10)
+        }
         context.addRect(bounds)
         context.drawPath(using: .stroke)
     }
+    
+    /// Text Rectangle
     func getTextRect(bigBox:CGRect) -> CGRect{
-        let width = bigBox.width*0.45
-        let height = bigBox.height*0.09
-        return CGRect(x: bigBox.minX, y: bigBox.minY - height, width: width, height: height)
+        var width: CGFloat = bigBox.width + bigBox.height*0.02
+        let height: CGFloat = 50
+        if bigBox.height < 125 {
+            width = bigBox.width + 10
+        }
+        // prevent overflow
+        if height > bigBox.height*0.25 {
+            // give text rectangle same width as bounding box
+            if bigBox.height < 125 {
+                return CGRect(x: bigBox.minX - 5, y: bigBox.maxY, width: width, height: height)
+            } else {
+                return CGRect(x: bigBox.minX - bigBox.height*0.01, y: bigBox.maxY, width: width, height: height)
+            }
+        }
+        // give text rectangle same width as bounding box
+        if bigBox.height < 125 {
+            return CGRect(x: bigBox.minX - 15, y: bigBox.maxY, width: width, height: height)
+        } else {
+            return CGRect(x: bigBox.minX - bigBox.height*0.01, y: bigBox.maxY - height, width: width, height: height)
+        }
     }
-    func drawTextBox(context:CGContext ,drawText text: String, bounds:CGRect ,color:CGColor) {
+    
+    /// Text
+    func drawTextBox(context:CGContext, drawText text: String, bounds:CGRect, color:CGColor) {
         
         //text box
         context.setFillColor(color)
@@ -77,8 +102,8 @@ class Labeling{
         context.drawPath(using: .fill)
         
         //text
-        let textColor = UIColor.white
-        let textFont = UIFont(name: "Helvetica Bold", size: bounds.height*0.45)!
+        let textColor = UIColor.black
+        let textFont = UIFont(name: "Helvetica", size: 35)!
         
         let textFontAttributes = [
             NSAttributedString.Key.font: textFont,
@@ -86,20 +111,6 @@ class Labeling{
         ] as [NSAttributedString.Key : Any]
         
         text.draw(in: bounds.offsetBy(dx: bounds.width*0.05, dy: bounds.height*0.05), withAttributes: textFontAttributes)
-        
-    }
-    
-    let labels = ["non-organic waste", "organic waste"]
-    
-    func generateLabelColors() -> [String: CGColor] {
-        var labelColor: [String: CGColor] = [labels[0]:CGColor(red: 255, green: 0, blue: 0, alpha: 1),labels[1]:CGColor(red: 0, green: 255, blue: 0, alpha: 1)]
-        
-//        for i in 0...1 {
-//            let color = UIColor(red: CGFloat.random(in: 0...1), green: CGFloat.random(in: 0...1), blue: CGFloat.random(in: 0...1), alpha: 1)
-//            labelColor[self.labels[i]] = color.cgColor
-//        }
-//
-        return labelColor
     }
     
 }
