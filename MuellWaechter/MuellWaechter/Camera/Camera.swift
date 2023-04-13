@@ -219,7 +219,6 @@ class Camera: NSObject {
                 captureSession.addInput(deviceInput)
             }
         }
-        
         updateVideoOutputConnection()
     }
     
@@ -281,12 +280,7 @@ class Camera: NSObject {
         }
         return orientation
     }
-    
-    @objc
-    func updateForDeviceOrientation() {
-        //TODO: Figure out if we need this for anything.
-    }
-    
+
     private func videoOrientationFor(_ deviceOrientation: UIDeviceOrientation) -> AVCaptureVideoOrientation? {
         switch deviceOrientation {
         case .portrait: return AVCaptureVideoOrientation.portrait
