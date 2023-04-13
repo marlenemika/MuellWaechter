@@ -30,8 +30,7 @@ class ObjectDetection{
         }
     }
     
-    func detectAndProcess(image: CIImage, useCase: Int)-> [ProcessedObservation]{
-        
+    func detectAndProcess(image: CIImage, useCase: Int) -> [ProcessedObservation] {
         let observations = self.detect(image: image)
         
         let processedObservations = self.processObservation(observations: observations, viewSize: image.extent.size, useCase: useCase)
@@ -39,26 +38,21 @@ class ObjectDetection{
         return processedObservations
     }
     
-    
-    func detect(image:CIImage) -> [VNObservation]{
-        
+    func detect(image: CIImage) -> [VNObservation] {
         let handler = VNImageRequestHandler(ciImage: image)
         
-        do{
+        do {
             try handler.perform([self.detectionRequest])
             let observations = self.detectionRequest.results!
-            
             return observations
-            
-        }catch let error{
+        } catch let error {
             fatalError("failed to detect: \(error)")
         }
-        
     }
     
     
     func processObservation(observations:[VNObservation], viewSize:CGSize, useCase: Int) -> [ProcessedObservation]{
-       
+        
         var processedObservations:[ProcessedObservation] = []
         
         for observation in observations where observation is VNRecognizedObjectObservation {
@@ -79,11 +73,8 @@ class ObjectDetection{
                 processedObservations.append(processedOD)
             }
         }
-        
         return processedObservations
-        
     }
-    
 }
 
 struct ProcessedObservation{

@@ -23,14 +23,14 @@ class Labeling{
         return labelColor
     }
     
-    func labelImage(image:UIImage,observations:[ProcessedObservation]) -> UIImage?{
+    ///  Add detections to picture
+    func labelImage(image: UIImage, observations: [ProcessedObservation]) -> UIImage?{
         // setting up context
         UIGraphicsBeginImageContext(image.size)
         // image is drawn as background in current context
         image.draw(at: CGPoint.zero)
         // Get the current context
         let context = UIGraphicsGetCurrentContext()!
-        
         
         for observation in observations{
             var labelColor: CGColor?
@@ -59,7 +59,7 @@ class Labeling{
     }
     
     /// Bounding Box
-    func drawBox(context:CGContext, bounds:CGRect, color:CGColor){
+    func drawBox(context: CGContext, bounds :CGRect, color: CGColor){
         context.setStrokeColor(color)
         context.setLineWidth(bounds.height*0.02)
         if bounds.height < 125 {
@@ -70,7 +70,7 @@ class Labeling{
     }
     
     /// Text Rectangle
-    func getTextRect(bigBox:CGRect) -> CGRect{
+    func getTextRect(bigBox: CGRect) -> CGRect {
         var width: CGFloat = bigBox.width + bigBox.height*0.02
         let height: CGFloat = 50
         if bigBox.height < 125 {
@@ -94,7 +94,7 @@ class Labeling{
     }
     
     /// Text
-    func drawTextBox(context:CGContext, drawText text: String, bounds:CGRect, color:CGColor) {
+    func drawTextBox(context: CGContext, drawText text: String, bounds: CGRect, color: CGColor) {
         
         //text box
         context.setFillColor(color)
