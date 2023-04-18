@@ -70,10 +70,10 @@ class DataModel: NSObject,ObservableObject {
         }))) {
             // check bio waste
             if (useCase == 1) {
-                observationsInfo = "Bei den markierten Gegenständen handelt es sich um Nicht-Biomüll.\nBitte aus dem Biomüll entfernen.\n"
+                observationsInfo = "Bei den markierten Gegenständen handelt es sich um Nicht-Biomüll.\nBitte aus dem Biomüll entfernen.\n".localize()
             // classify objects
             } else if (useCase == 2) {
-                observationsInfo = "Bei den markierten Gegenständen handelt es sich um Nicht-Biomüll.\n"
+                observationsInfo = "Bei den markierten Gegenständen handelt es sich um Nicht-Biomüll.\n".localize()
             }
         }
         
@@ -85,7 +85,7 @@ class DataModel: NSObject,ObservableObject {
         }))) {
             // classify objects
             if (useCase == 2) {
-                observationsInfo = "Bei den markierten Gegenständen handelt es sich um Biomüll.\n"
+                observationsInfo = "Bei den markierten Gegenständen handelt es sich um Biomüll.\n".localize()
             }
         }
         
@@ -97,7 +97,7 @@ class DataModel: NSObject,ObservableObject {
         }))) {
             // classify objects
             if (useCase == 2) {
-                observationsInfo = "Bei den grün markierten Gegenständen handelt es sich um Biomüll.\nBei den rot markierten Gegenständen handelt es sich um Nicht-Biomüll."
+                observationsInfo = "Bei den grün markierten Gegenständen handelt es sich um Biomüll.\nBei den rot markierten Gegenständen handelt es sich um Nicht-Biomüll.".localize()
             }
         }
         
@@ -109,10 +109,10 @@ class DataModel: NSObject,ObservableObject {
         }))) {
             // check bio waste
             if (useCase == 1) {
-                observationsInfo = "Es wurden keine Fremdstoffe im Müll erkannt.\n"
+                observationsInfo = "Es wurden keine Fremdstoffe im Müll erkannt.\n".localize()
             // classify objects
             } else if (useCase == 2) {
-                observationsInfo = "Es wurden keine Objekte erkannt.\n"
+                observationsInfo = "Es wurden keine Objekte erkannt.\n".localize()
             }
         }
     }

@@ -21,7 +21,7 @@ struct ImageView: View {
         NavigationView {
             if(!showLoadingScreen) {
                 VStack(alignment: .center) {
-                    Text("Bild wird analysiert...").fontWeight(.bold)
+                    Text("Bild wird analysiert...".localize()).fontWeight(.bold)
                         .padding(.top, 250)
                     GIFImage(name: "LoadingPop")
                         .frame(width: 100)

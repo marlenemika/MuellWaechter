@@ -45,7 +45,7 @@ struct ContentView: View {
                 await model.handleCameraPreviews(useCase: useCase)
             }
             .ignoresSafeArea()
-            .navigationTitle("Live Ansicht")
+            .navigationTitle("Live Ansicht".localize())
             .navigationBarTitleDisplayMode(.inline)
             .onAppear(){
                 UIApplication.shared.isIdleTimerDisabled = true

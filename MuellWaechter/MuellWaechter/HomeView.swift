@@ -23,8 +23,8 @@ struct HomeView: View {
     @State private var showInfoSecond: Bool = false
     @State private var showObjects: Bool = false
     
-    private var objectsBio: [String] = ["Eierschalen", "Eierkartons", "Küchenpapier", "Apfel", "Erde", "Gras", "Kaffeefilter", "Laub", "Sonnenblumen", "Federn\n"]
-    private var objectsNonBio: [String] = ["Plastiktüten", "Glas", "Plastikbecher", "Coladosen", "Batterien", "Masken", "Kieselsteine", "Keramikteller", "Tabletten", "Zigarettenstümmel"]
+    private var objectsBio: [String] = ["Eierschalen".localize(), "Eierkartons".localize(), "Küchenpapier".localize(), "Apfel".localize(), "Erde".localize(), "Gras".localize(), "Kaffeefilter".localize(), "Laub".localize(), "Sonnenblumen".localize(), "Federn\n".localize()]
+    private var objectsNonBio: [String] = ["Plastiktüten".localize(), "Glas".localize(), "Plastikbecher".localize(), "Coladosen".localize(), "Batterien".localize(), "Masken".localize(), "Kieselsteine".localize(), "Keramikteller".localize(), "Tabletten".localize(), "Zigarettenstümmel".localize()]
     
     var body: some View {
         NavigationView {
@@ -33,21 +33,21 @@ struct HomeView: View {
                 
                 VStack {
                     Spacer()
-                    Text("Müll Wächter").font(.largeTitle).fontWeight(.bold).background(colorScheme == .light ? .white : .black).cornerRadius(10)
+                    Text("Müll Wächter".localize()).font(.largeTitle).fontWeight(.bold).background(colorScheme == .light ? .white : .black).cornerRadius(10)
                     
                     HStack {
                         Menu {
-                            Button("Live Ansicht") {
+                            Button("Live Ansicht".localize()) {
                                 self.navigateTo = 1
                                 self.isActiveBio = true
                                 self.useCase = 1
                             }
-                            Button("Foto aufnehmen") {
+                            Button("Foto aufnehmen".localize()) {
                                 self.sourceType = .camera
                                 self.showPhotosPicker = true
                                 self.useCase = 1
                             }
-                            Button("Foto aus Galerie auswählen") {
+                            Button("Foto aus Galerie auswählen".localize()) {
                                 self.sourceType = .photoLibrary
                                 self.showPhotosPicker = true
                                 self.useCase = 1
@@ -59,7 +59,7 @@ struct HomeView: View {
                                     .foregroundColor(.primary)
                                     .frame(width: 200, height: 35)
                                     .cornerRadius(25)
-                                Text("Überprüfe Biomüll")
+                                Text("Überprüfe Biomüll".localize())
                                     .foregroundColor(.primary).colorInvert().fontWeight(.bold)
                             }
                         }
@@ -85,17 +85,17 @@ struct HomeView: View {
                     
                     HStack {
                         Menu {
-                            Button("Live Ansicht") {
+                            Button("Live Ansicht".localize()) {
                                 self.navigateTo = 1
                                 self.isActiveClassify = true
                                 self.useCase = 2
                             }
-                            Button("Foto aufnehmen") {
+                            Button("Foto aufnehmen".localize()) {
                                 self.sourceType = .camera
                                 self.showPhotosPicker = true
                                 self.useCase = 2
                             }
-                            Button("Foto aus Galerie auswählen") {
+                            Button("Foto aus Galerie auswählen".localize()) {
                                 self.sourceType = .photoLibrary
                                 self.showPhotosPicker = true
                                 self.useCase = 2
@@ -107,7 +107,7 @@ struct HomeView: View {
                                     .foregroundColor(.primary)
                                     .frame(width: 200, height: 35)
                                     .cornerRadius(25)
-                                Text("Klassifiziere Objekte")
+                                Text("Klassifiziere Objekte".localize())
                                     .foregroundColor(.primary).colorInvert().fontWeight(.bold)
                             }
                         }
@@ -146,7 +146,7 @@ struct HomeView: View {
                                 .foregroundColor(.primary)
                                 .frame(width: 200, height: 35)
                                 .cornerRadius(25)
-                            Text("Objektübersicht")
+                            Text("Objektübersicht".localize())
                                 .foregroundColor(.primary).colorInvert().fontWeight(.bold)
                         }.onTapGesture {
                             showObjects = true
@@ -197,15 +197,15 @@ struct HomeView: View {
         .sheet(isPresented: $sheetPresented, content: {
             NavigationView {
                 VStack {
-                    Text("Durch die Nutzung dieser iOS-App stimmen Sie den folgenden Bedingungen zu: Diese App ist nur für den persönlichen Gebrauch bestimmt. Sie dürfen die App nicht für kommerzielle Zwecke nutzen. Sie dürfen die App nicht dekompilieren, disassemblieren oder auf andere Weise versuchen, den Quellcode der App zu ermitteln. Sie dürfen die App nicht in einer Weise nutzen, die gegen geltende Gesetze oder Vorschriften verstößt. Sie dürfen keine Inhalte in der App veröffentlichen, die verleumderisch, beleidigend oder anderweitig unangemessen sind. Wir behalten uns das Recht vor, die App jederzeit ohne Vorankündigung zu ändern oder einzustellen. Wir haften nicht für Schäden, die durch die Nutzung der App entstehen können. Durch die Nutzung der App erklären Sie sich damit einverstanden, dass wir personenbezogene Daten von Ihnen erfassen und nutzen dürfen, wie in unserer Datenschutzrichtlinie beschrieben.")
+                    Text("Durch die Nutzung dieser iOS-App stimmen Sie den folgenden Bedingungen zu: Diese App ist nur für den persönlichen Gebrauch bestimmt. Sie dürfen die App nicht für kommerzielle Zwecke nutzen. Sie dürfen die App nicht dekompilieren, disassemblieren oder auf andere Weise versuchen, den Quellcode der App zu ermitteln. Sie dürfen die App nicht in einer Weise nutzen, die gegen geltende Gesetze oder Vorschriften verstößt. Sie dürfen keine Inhalte in der App veröffentlichen, die verleumderisch, beleidigend oder anderweitig unangemessen sind. Wir behalten uns das Recht vor, die App jederzeit ohne Vorankündigung zu ändern oder einzustellen. Wir haften nicht für Schäden, die durch die Nutzung der App entstehen können. Durch die Nutzung der App erklären Sie sich damit einverstanden, dass wir personenbezogene Daten von Ihnen erfassen und nutzen dürfen, wie in unserer Datenschutzrichtlinie beschrieben.".localize())
                         .padding()
                         .toolbar(content: {
                             Button(action: {
                                 sheetPresented = false
                             }, label: {
-                                Text("Done")
+                                Text("Fertig".localize())
                             })
-                        }).navigationTitle("Terms & Conditions")
+                        }).navigationTitle("Nutzungsbedingungen".localize())
                 }
             }
         })
@@ -213,19 +213,19 @@ struct HomeView: View {
             NavigationView {
                 ScrollView {
                     VStack {
-                        Text("Mit dieser Funktion kann überprüft werden, ob Bio-Abfallbehälter ordentlich sortiert ist oder ob sich darin Fremdstoffe befinden. Dazu kann entweder ein bereits bestehendes Bild aus der Galerie ausgewählt werden oder ein Bild mit der Kamera aufgenommen werden. Alternativ kann auch mit einer Live-Ansicht der Biomüll auf Fremdstoffe überprüft werden.")
+                        Text("Mit dieser Funktion kann überprüft werden, ob Bio-Abfallbehälter ordentlich sortiert ist oder ob sich darin Fremdstoffe befinden. Dazu kann entweder ein bereits bestehendes Bild aus der Galerie ausgewählt werden oder ein Bild mit der Kamera aufgenommen werden. Alternativ kann auch mit einer Live-Ansicht der Biomüll auf Fremdstoffe überprüft werden.".localize())
                         Image("checkBio")
                             .resizable()
                             .scaledToFit()
                             .scaleEffect(0.8)
                     }.padding()
                 }
-                .navigationTitle("Hilfe")
+                .navigationTitle("Hilfe".localize())
                 .toolbar(content: {
                     Button {
                         showInfoFirst = false
                     } label: {
-                        Text("Fertig")
+                        Text("Fertig".localize())
                     }
                 })
             }
@@ -234,19 +234,19 @@ struct HomeView: View {
             NavigationView {
                 ScrollView {
                     VStack {
-                        Text("Mit dieser Funktion können eine oder mehrere Objekte darauf überprüft werden, ob es sich jeweils um Bioabfall oder Nicht-Bioabfall handelt. Dazu kann entweder ein bereits bestehendes Bild aus der Galerie ausgewählt werden oder ein Bild mit der Kamera aufgenommen werden. Alternativ kann auch mit einer Live-Ansicht die Klassifizierung erfolgen.")
+                        Text("Mit dieser Funktion können eine oder mehrere Objekte darauf überprüft werden, ob es sich jeweils um Bioabfall oder Nicht-Bioabfall handelt. Dazu kann entweder ein bereits bestehendes Bild aus der Galerie ausgewählt werden oder ein Bild mit der Kamera aufgenommen werden. Alternativ kann auch mit einer Live-Ansicht die Klassifizierung erfolgen.".localize())
                         Image("classifyObject")
                             .resizable()
                             .scaledToFit()
                             .scaleEffect(0.8)
                     }.padding()
                 }
-                .navigationTitle("Hilfe")
+                .navigationTitle("Hilfe".localize())
                 .toolbar(content: {
                     Button {
                         showInfoSecond = false
                     } label: {
-                        Text("Fertig")
+                        Text("Fertig".localize())
                     }
                 })
             }
@@ -254,22 +254,22 @@ struct HomeView: View {
         .sheet(isPresented: $showObjects, content: {
             NavigationView {
                     VStack(alignment: .leading) {
-                        Text("Folgende Objekte kann der MüllWächter erkennen und klassifizieren:\n")
-                        Text("Biomüll Objekte").fontWeight(.bold)
+                        Text("Folgende Objekte kann der MüllWächter derzeit erkennen und klassifizieren:\n".localize())
+                        Text("Biomüll Objekte".localize()).fontWeight(.bold)
                             ForEach(objectsBio, id: \.self) { obj in
                                 Text(obj)
                             }
-                        Text("Nicht-Biomüll Objekte").fontWeight(.bold)
+                        Text("Nicht-Biomüll Objekte".localize()).fontWeight(.bold)
                             ForEach(objectsNonBio, id: \.self) { obj in
                                 Text(obj)
                             }
                     }.padding()
-                .navigationTitle("Erkannte Objekte")
+                .navigationTitle("Erkannte Objekte".localize())
                 .toolbar(content: {
                     Button {
                         showObjects = false
                     } label: {
-                        Text("Fertig")
+                        Text("Fertig".localize())
                     }
                 })
             }
