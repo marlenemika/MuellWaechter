@@ -25,13 +25,12 @@
 		BF65599029D48597000C93F0 /* ObjectDetection.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF65598F29D48597000C93F0 /* ObjectDetection.swift */; };
 		BF65599229D485CE000C93F0 /* yolov7.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = BF65599129D485CE000C93F0 /* yolov7.mlmodel */; };
 		BFE010F429EED220003029D0 /* String+localize.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE010F329EED220003029D0 /* String+localize.swift */; };
-		BFE010FE29EEE38B003029D0 /* Localizable(en).strings in Resources */ = {isa = PBXBuildFile; fileRef = BFE0110029EEE38B003029D0 /* Localizable(en).strings */; };
-		BFE0110229EEE4F3003029D0 /* Localizable(de).strings in Resources */ = {isa = PBXBuildFile; fileRef = BFE0110429EEE4F3003029D0 /* Localizable(de).strings */; };
+		BFE0110229EEE4F3003029D0 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BFE0110429EEE4F3003029D0 /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		47104EFD29D4E4BE0022E521 /* LoadingPop.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = LoadingPop.gif; path = ../../../../Downloads/LoadingPop.gif; sourceTree = "<group>"; };
-		BF65596A29D483B5000C93F0 /* MuellWaechter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MuellWaechter.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BF65596A29D483B5000C93F0 /* MüllWächter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MüllWächter.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF65596D29D483B5000C93F0 /* MuellWaechterApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MuellWaechterApp.swift; sourceTree = "<group>"; };
 		BF65596F29D483B5000C93F0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		BF65597129D483B8000C93F0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -48,8 +47,8 @@
 		BF65598F29D48597000C93F0 /* ObjectDetection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectDetection.swift; sourceTree = "<group>"; };
 		BF65599129D485CE000C93F0 /* yolov7.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = yolov7.mlmodel; path = ../../../../../Downloads/yolov7.mlmodel; sourceTree = "<group>"; };
 		BFE010F329EED220003029D0 /* String+localize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+localize.swift"; sourceTree = "<group>"; };
-		BFE010FF29EEE38B003029D0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = "en.lproj/Localizable(en).strings"; sourceTree = "<group>"; };
-		BFE0110329EEE4F3003029D0 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = "de.lproj/Localizable(de).strings"; sourceTree = "<group>"; };
+		BFE0110329EEE4F3003029D0 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
+		BFE0110829EEEA9C003029D0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,7 +74,7 @@
 		BF65596B29D483B5000C93F0 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				BF65596A29D483B5000C93F0 /* MuellWaechter.app */,
+				BF65596A29D483B5000C93F0 /* MüllWächter.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -83,6 +82,7 @@
 		BF65596C29D483B5000C93F0 /* MuellWaechter */ = {
 			isa = PBXGroup;
 			children = (
+				BFE0110429EEE4F3003029D0 /* Localizable.strings */,
 				47104EFD29D4E4BE0022E521 /* LoadingPop.gif */,
 				BF65598629D484F6000C93F0 /* Camera */,
 				BF65598529D484EC000C93F0 /* ObjectDetection */,
@@ -96,8 +96,6 @@
 				BF65598129D484B9000C93F0 /* Coordinator.swift */,
 				BF65598329D484D1000C93F0 /* ImageView.swift */,
 				BFE010F329EED220003029D0 /* String+localize.swift */,
-				BFE0110429EEE4F3003029D0 /* Localizable(de).strings */,
-				BFE0110029EEE38B003029D0 /* Localizable(en).strings */,
 			);
 			path = MuellWaechter;
 			sourceTree = "<group>";
@@ -133,9 +131,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		BF65596929D483B5000C93F0 /* MuellWaechter */ = {
+		BF65596929D483B5000C93F0 /* MüllWächter */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = BF65597829D483B8000C93F0 /* Build configuration list for PBXNativeTarget "MuellWaechter" */;
+			buildConfigurationList = BF65597829D483B8000C93F0 /* Build configuration list for PBXNativeTarget "MüllWächter" */;
 			buildPhases = (
 				BF65596629D483B5000C93F0 /* Sources */,
 				BF65596729D483B5000C93F0 /* Frameworks */,
@@ -145,12 +143,12 @@
 			);
 			dependencies = (
 			);
-			name = MuellWaechter;
+			name = "MüllWächter";
 			packageProductDependencies = (
 				47104EFB29D4E47E0022E521 /* SwiftUIGIF */,
 			);
 			productName = MuellWaechter;
-			productReference = BF65596A29D483B5000C93F0 /* MuellWaechter.app */;
+			productReference = BF65596A29D483B5000C93F0 /* MüllWächter.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -185,7 +183,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				BF65596929D483B5000C93F0 /* MuellWaechter */,
+				BF65596929D483B5000C93F0 /* MüllWächter */,
 			);
 		};
 /* End PBXProject section */
@@ -195,9 +193,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BFE0110229EEE4F3003029D0 /* Localizable(de).strings in Resources */,
+				BFE0110229EEE4F3003029D0 /* Localizable.strings in Resources */,
 				47104EFE29D4E4BE0022E521 /* LoadingPop.gif in Resources */,
-				BFE010FE29EEE38B003029D0 /* Localizable(en).strings in Resources */,
 				BF65597529D483B8000C93F0 /* Preview Assets.xcassets in Resources */,
 				BF65597229D483B8000C93F0 /* Assets.xcassets in Resources */,
 			);
@@ -230,20 +227,13 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		BFE0110029EEE38B003029D0 /* Localizable(en).strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				BFE010FF29EEE38B003029D0 /* en */,
-			);
-			name = "Localizable(en).strings";
-			sourceTree = "<group>";
-		};
-		BFE0110429EEE4F3003029D0 /* Localizable(de).strings */ = {
+		BFE0110429EEE4F3003029D0 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
 				BFE0110329EEE4F3003029D0 /* de */,
+				BFE0110829EEEA9C003029D0 /* en */,
 			);
-			name = "Localizable(de).strings";
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -437,7 +427,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		BF65597829D483B8000C93F0 /* Build configuration list for PBXNativeTarget "MuellWaechter" */ = {
+		BF65597829D483B8000C93F0 /* Build configuration list for PBXNativeTarget "MüllWächter" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				BF65597929D483B8000C93F0 /* Debug */,
