@@ -1,9 +1,7 @@
-//
-//  ViewfinderView.swift
-//  MuellWaechter
-//
-//  Created by Marlene Mika on 29.03.23.
-//
+/*
+See the License.txt file for this sample’s licensing information.
+https://developer.apple.com/tutorials/sample-apps/capturingphotos-camerapreview
+*/
 
 import SwiftUI
 
@@ -16,7 +14,7 @@ struct ViewfinderView: View {
                 image
                     .resizable()
                     .scaledToFill()
-                    .frame(width: geometry.size.width, height: 700)
+                    .frame(width: geometry.size.width, height: geometry.size.height)
             }
         }
     }

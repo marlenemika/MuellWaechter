@@ -21,7 +21,7 @@ struct ImageView: View {
         NavigationView {
             if(!showLoadingScreen) {
                 VStack(alignment: .center) {
-                    Text("Bild wird analysiert...".localize()).fontWeight(.bold)
+                    Text("Bild wird analysiert...").fontWeight(.bold)
                         .padding(.top, 250)
                     GIFImage(name: "LoadingPop")
                         .frame(width: 100)
@@ -29,15 +29,15 @@ struct ImageView: View {
             } else {
                 GeometryReader { geometry in
                     VStack {
-                        SelectedImageView(image: $model.selectionImage)
-                        Text(model.observationsInfo)
+                        SelectedImageView(image: $model.selectedImage)
+                        Text(model.observationInformation)
                             .padding()
                     }
                 }
             }
         }.task {
             Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { timer in
-                if(model.detector.ready) {
+                if(model.detection.ready) {
                     if(picture != nil) {
                         model.handlePhotoPreview(image: CIImage(data: picture!)!, useCase: useCase)
                         showLoadingScreen = true

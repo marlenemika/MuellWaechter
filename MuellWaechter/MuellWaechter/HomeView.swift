@@ -13,7 +13,6 @@ struct HomeView: View {
     @State private var selectedItem: UIImage? = nil
     @State private var selectedImageData: Data? = nil
     @State private var showPhotosPicker: Bool = false
-    @State private var sheetPresented: Bool = false
     @State private var navigateTo: Int = -1
     @State private var isActiveBio: Bool = false
     @State private var isActiveClassify: Bool = false
@@ -22,32 +21,38 @@ struct HomeView: View {
     @State private var showInfoFirst: Bool = false
     @State private var showInfoSecond: Bool = false
     @State private var showObjects: Bool = false
+    @State private var showSettings: Bool = false
+    @State private var id: Int = UserDefaults.standard.value(forKey: "modelId") == nil ? 1 : UserDefaults.standard.integer(forKey: "modelId")
     
-    private var objectsBio: [String] = ["Eierschalen".localize(), "Eierkartons".localize(), "Küchenpapier".localize(), "Apfel".localize(), "Erde".localize(), "Gras".localize(), "Kaffeefilter".localize(), "Laub".localize(), "Sonnenblumen".localize(), "Federn\n".localize()]
-    private var objectsNonBio: [String] = ["Plastiktüten".localize(), "Glas".localize(), "Plastikbecher".localize(), "Coladosen".localize(), "Batterien".localize(), "Masken".localize(), "Kieselsteine".localize(), "Keramikteller".localize(), "Tabletten".localize(), "Zigarettenstümmel".localize()]
+    private var objectsBiov1: [String] = ["Apfel", "Eierkarton", "Eierschale", "Erde", "Feder", "Gras", "Kaffeefilter", "Küchenpapier", "Laub", "Sonnenblume\n"]
+    private var objectsNonBiov1: [String] = ["Aludose", "Batterie","Gesichtsmaske", "Glas", "Keramikteller", "Kieselstein", "Plastikbecher", "Plastiktüte", "Tablette", "Zigarettenstümmel\n"]
+    private var objectsBiov2: [String] = ["Apfel", "Eierkarton", "Eierschale", "Erde", "Feder", "Knochen", "Küchenpapier", "Laub", "Orangenschale", "Sonnenblume\n"]
+    private var objectsNonBiov2: [String] = ["Aludose", "Batterie", "Glas", "Gesichtsmaske", "Keramikteller", "Kieselstein", "Plastikbecher", "Plastiktüte", "Tablette", "Zigarettenstümmel\n"]
     
     var body: some View {
+        if UIApplication.isFirstLaunch() {}
+        
         NavigationView {
             ZStack {
                 colorScheme == .light ? Image("background0").resizable().frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height).blur(radius: 3).opacity(0.4) : Image("background1").resizable().frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height).blur(radius: 3).opacity(0.4)
                 
                 VStack {
                     Spacer()
-                    Text("Müll Wächter".localize()).font(.largeTitle).fontWeight(.bold).background(colorScheme == .light ? .white : .black).cornerRadius(10)
+                    Text("Müll Wächter").font(.largeTitle).fontWeight(.bold).background(colorScheme == .light ? .white : .black).cornerRadius(10)
                     
                     HStack {
                         Menu {
-                            Button("Live Ansicht".localize()) {
+                            Button("Live Ansicht") {
                                 self.navigateTo = 1
                                 self.isActiveBio = true
                                 self.useCase = 1
                             }
-                            Button("Foto aufnehmen".localize()) {
+                            Button("Foto aufnehmen") {
                                 self.sourceType = .camera
                                 self.showPhotosPicker = true
                                 self.useCase = 1
                             }
-                            Button("Foto aus Galerie auswählen".localize()) {
+                            Button("Foto aus Galerie auswählen") {
                                 self.sourceType = .photoLibrary
                                 self.showPhotosPicker = true
                                 self.useCase = 1
@@ -59,7 +64,7 @@ struct HomeView: View {
                                     .foregroundColor(.primary)
                                     .frame(width: 200, height: 35)
                                     .cornerRadius(25)
-                                Text("Überprüfe Biomüll".localize())
+                                Text("Überprüfe Biomüll")
                                     .foregroundColor(.primary).colorInvert().fontWeight(.bold)
                             }
                         }
@@ -85,17 +90,17 @@ struct HomeView: View {
                     
                     HStack {
                         Menu {
-                            Button("Live Ansicht".localize()) {
+                            Button("Live Ansicht") {
                                 self.navigateTo = 1
                                 self.isActiveClassify = true
                                 self.useCase = 2
                             }
-                            Button("Foto aufnehmen".localize()) {
+                            Button("Foto aufnehmen") {
                                 self.sourceType = .camera
                                 self.showPhotosPicker = true
                                 self.useCase = 2
                             }
-                            Button("Foto aus Galerie auswählen".localize()) {
+                            Button("Foto aus Galerie auswählen") {
                                 self.sourceType = .photoLibrary
                                 self.showPhotosPicker = true
                                 self.useCase = 2
@@ -107,7 +112,7 @@ struct HomeView: View {
                                     .foregroundColor(.primary)
                                     .frame(width: 200, height: 35)
                                     .cornerRadius(25)
-                                Text("Klassifiziere Objekte".localize())
+                                Text("Klassifiziere Objekte")
                                     .foregroundColor(.primary).colorInvert().fontWeight(.bold)
                             }
                         }
@@ -130,10 +135,20 @@ struct HomeView: View {
                             }
                     )
                     .toolbar(content: {
-                        Button(action: {
-                            sheetPresented = true
-                        }, label: {
-                            Image(systemName: "info.circle")
+                        ToolbarItem(placement: .navigationBarTrailing, content: {
+                            Button(action: {
+                                showSettings = true
+                            }, label: {
+                                ZStack {
+                                    Rectangle()
+                                        .fill()
+                                        .foregroundColor(.primary)
+                                        .frame(width: 35, height: 35)
+                                        .cornerRadius(25)
+                                    Image(systemName: "gear")
+                                        .foregroundColor(.primary).colorInvert()
+                                }
+                            })
                         })
                     })
                     Spacer()
@@ -146,17 +161,16 @@ struct HomeView: View {
                                 .foregroundColor(.primary)
                                 .frame(width: 200, height: 35)
                                 .cornerRadius(25)
-                            Text("Objektübersicht".localize())
+                            Text("Objektübersicht")
                                 .foregroundColor(.primary).colorInvert().fontWeight(.bold)
                         }.onTapGesture {
                             showObjects = true
-                        }.padding(.bottom, 50)
+                        }.padding(.bottom, 100)
                     }
 
                 }
             }
             .onAppear {
-                print("appear main view")
                 navigateTo = -1
                 selectedItem = nil
                 selectedImageData = nil
@@ -194,38 +208,65 @@ struct HomeView: View {
                 ImagePickerView(selectedImage: $selectedItem, sourceType: self.sourceType).edgesIgnoringSafeArea(.bottom)
             }
         })
-        .sheet(isPresented: $sheetPresented, content: {
+        .sheet(isPresented: $showSettings, content: {
             NavigationView {
-                VStack {
-                    Text("Durch die Nutzung dieser iOS-App stimmen Sie den folgenden Bedingungen zu: Diese App ist nur für den persönlichen Gebrauch bestimmt. Sie dürfen die App nicht für kommerzielle Zwecke nutzen. Sie dürfen die App nicht dekompilieren, disassemblieren oder auf andere Weise versuchen, den Quellcode der App zu ermitteln. Sie dürfen die App nicht in einer Weise nutzen, die gegen geltende Gesetze oder Vorschriften verstößt. Sie dürfen keine Inhalte in der App veröffentlichen, die verleumderisch, beleidigend oder anderweitig unangemessen sind. Wir behalten uns das Recht vor, die App jederzeit ohne Vorankündigung zu ändern oder einzustellen. Wir haften nicht für Schäden, die durch die Nutzung der App entstehen können. Durch die Nutzung der App erklären Sie sich damit einverstanden, dass wir personenbezogene Daten von Ihnen erfassen und nutzen dürfen, wie in unserer Datenschutzrichtlinie beschrieben.".localize())
-                        .padding()
-                        .toolbar(content: {
-                            Button(action: {
-                                sheetPresented = false
-                            }, label: {
-                                Text("Fertig".localize())
-                            })
-                        }).navigationTitle("Nutzungsbedingungen".localize())
-                }
+                    VStack {
+                        List {
+                            Section {
+                                Picker("Version KI", selection: $id) {
+                                    Text("Version 1").tag(1)
+                                    Text("Version 2").tag(2)
+                                }
+                                Text("**Hinweis**\nBeide KI-Modelle verfügen über eine unterschiedliche Liste an erkannten Objekten. Diese kann auf dem HomeScreen unter **Objektübersicht** aufgerufen werden.")
+                            } header: {
+                                Text("Einstellungen")
+                            }
+                            NavigationLink(destination: ImprintView()) {
+                                VStack {
+                                    Text("Impressum")
+                                }
+                            }
+                            NavigationLink(destination: TermsConditionsView()) {
+                                VStack {
+                                    Text("Nutzungsbedingungen")
+                                }
+                            }
+                            NavigationLink(destination: DisclaimerView()) {
+                                VStack {
+                                    Text("Haftungsausschluss")
+                                }
+                            }
+                        }
+                    }.padding()
+                .navigationTitle("Einstellungen")
+                .toolbar(content: {
+                    Button {
+                        showSettings = false
+                    } label: {
+                        Text("Fertig")
+                    }
+                })
             }
+        }).onChange(of: id, perform: { newValue in
+            UserDefaults.standard.set(newValue, forKey: "modelId")
         })
         .sheet(isPresented: $showInfoFirst, content: {
             NavigationView {
                 ScrollView {
                     VStack {
-                        Text("Mit dieser Funktion kann überprüft werden, ob Bio-Abfallbehälter ordentlich sortiert ist oder ob sich darin Fremdstoffe befinden. Dazu kann entweder ein bereits bestehendes Bild aus der Galerie ausgewählt werden oder ein Bild mit der Kamera aufgenommen werden. Alternativ kann auch mit einer Live-Ansicht der Biomüll auf Fremdstoffe überprüft werden.".localize())
+                        Text("Mit dieser Funktion kann überprüft werden, ob Bio-Abfallbehälter ordentlich sortiert ist oder ob sich darin Fremdstoffe befinden. Dazu kann entweder ein bereits bestehendes Bild aus der Galerie ausgewählt werden oder ein Bild mit der Kamera aufgenommen werden. Alternativ kann auch mit einer Live-Ansicht der Biomüll auf Fremdstoffe überprüft werden.")
                         Image("checkBio")
                             .resizable()
                             .scaledToFit()
                             .scaleEffect(0.8)
                     }.padding()
                 }
-                .navigationTitle("Hilfe".localize())
+                .navigationTitle("Hilfe")
                 .toolbar(content: {
                     Button {
                         showInfoFirst = false
                     } label: {
-                        Text("Fertig".localize())
+                        Text("Fertig")
                     }
                 })
             }
@@ -234,42 +275,46 @@ struct HomeView: View {
             NavigationView {
                 ScrollView {
                     VStack {
-                        Text("Mit dieser Funktion können eine oder mehrere Objekte darauf überprüft werden, ob es sich jeweils um Bioabfall oder Nicht-Bioabfall handelt. Dazu kann entweder ein bereits bestehendes Bild aus der Galerie ausgewählt werden oder ein Bild mit der Kamera aufgenommen werden. Alternativ kann auch mit einer Live-Ansicht die Klassifizierung erfolgen.".localize())
+                        Text("Mit dieser Funktion können eine oder mehrere Objekte darauf überprüft werden, ob es sich jeweils um Bioabfall oder Nicht-Bioabfall handelt. Dazu kann entweder ein bereits bestehendes Bild aus der Galerie ausgewählt werden oder ein Bild mit der Kamera aufgenommen werden. Alternativ kann auch mit einer Live-Ansicht die Klassifizierung erfolgen.")
                         Image("classifyObject")
                             .resizable()
                             .scaledToFit()
                             .scaleEffect(0.8)
                     }.padding()
                 }
-                .navigationTitle("Hilfe".localize())
+                .navigationTitle("Hilfe")
                 .toolbar(content: {
                     Button {
                         showInfoSecond = false
                     } label: {
-                        Text("Fertig".localize())
+                        Text("Fertig")
                     }
                 })
             }
         })
         .sheet(isPresented: $showObjects, content: {
             NavigationView {
-                    VStack(alignment: .leading) {
-                        Text("Folgende Objekte kann der MüllWächter derzeit erkennen und klassifizieren:\n".localize())
-                        Text("Biomüll Objekte".localize()).fontWeight(.bold)
-                            ForEach(objectsBio, id: \.self) { obj in
-                                Text(obj)
-                            }
-                        Text("Nicht-Biomüll Objekte".localize()).fontWeight(.bold)
-                            ForEach(objectsNonBio, id: \.self) { obj in
-                                Text(obj)
-                            }
-                    }.padding()
-                .navigationTitle("Erkannte Objekte".localize())
+                ScrollView {
+                VStack(alignment: .leading) {
+                    Text("Folgende Objekte kann der MüllWächter derzeit erkennen und klassifizieren:")
+                    Text("\nMomentane Version der KI: **Version \(UserDefaults.standard.integer(forKey: "modelId"))**")
+                    Text("\nBiomüll Objekte").fontWeight(.bold)
+                    ForEach(UserDefaults.standard.integer(forKey: "modelId") == 1 ? objectsBiov1 : objectsBiov2, id: \.self) { obj in
+                        Text(obj)
+                    }
+                    Text("Nicht-Biomüll Objekte").fontWeight(.bold)
+                    ForEach(UserDefaults.standard.integer(forKey: "modelId") == 2 ? objectsNonBiov1 : objectsNonBiov2, id: \.self) { obj in
+                        Text(obj)
+                    }
+                    Text("Um die Version der KI zu ändern, besuchen Sie bitte die **App-Einstellungen**.")
+                }.padding()
+            }
+                .navigationTitle("Erkannte Objekte")
                 .toolbar(content: {
                     Button {
                         showObjects = false
                     } label: {
-                        Text("Fertig".localize())
+                        Text("Fertig")
                     }
                 })
             }
@@ -286,8 +331,13 @@ struct HomeView: View {
     }
 }
 
-struct HomeView_Previews: PreviewProvider {
-    static var previews: some View {
-        HomeView()
+extension UIApplication {
+    class func isFirstLaunch() -> Bool {
+        if UserDefaults.standard.object(forKey: "modelId") == nil {
+            UserDefaults.standard.set(1, forKey: "modelId")
+            return true
+        }
+        return false
     }
+
 }

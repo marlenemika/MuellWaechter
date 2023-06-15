@@ -25,7 +25,7 @@ struct ContentView: View {
                             .fill(colorScheme == .light ? Color(.white).opacity(0.7) : Color(.black).opacity(0.7))
                     }
                     
-                    Text(model.observationsInfo)
+                    Text(model.observationInformation)
                         .padding()
             }
             .toolbar(content: {
@@ -45,7 +45,7 @@ struct ContentView: View {
                 await model.handleCameraPreviews(useCase: useCase)
             }
             .ignoresSafeArea()
-            .navigationTitle("Live Ansicht".localize())
+            .navigationTitle("Live Ansicht")
             .navigationBarTitleDisplayMode(.inline)
             .onAppear(){
                 UIApplication.shared.isIdleTimerDisabled = true

@@ -1,9 +1,7 @@
-//
-//  Camera.swift
-//  MuellWaechter
-//
-//  Created by Marlene Mika on 29.03.23.
-//
+/*
+See the License.txt file for this sample’s licensing information.
+https://developer.apple.com/tutorials/sample-apps/capturingphotos-camerapreview
+*/
 
 import AVFoundation
 import CoreImage
@@ -55,6 +53,7 @@ class Camera: NSObject {
     private var captureDevice: AVCaptureDevice? {
         didSet {
             guard let captureDevice = captureDevice else { return }
+            print("Using capture device: \(captureDevice.localizedName)")
             sessionQueue.async {
                 self.updateSessionForCaptureDevice(captureDevice)
             }
@@ -140,7 +139,7 @@ class Camera: NSObject {
         videoOutput.setSampleBufferDelegate(self, queue: DispatchQueue(label: "VideoDataOutputQueue"))
   
         guard captureSession.canAddInput(deviceInput) else {
-           print("Unable to add device input to capture session.")
+            print("Unable to add device input to capture session.")
             return
         }
         guard captureSession.canAddOutput(photoOutput) else {
@@ -160,8 +159,10 @@ class Camera: NSObject {
         self.photoOutput = photoOutput
         self.videoOutput = videoOutput
         
-        photoOutput.isHighResolutionCaptureEnabled = true
-        photoOutput.maxPhotoQualityPrioritization = .quality
+        //photoOutput.isHighResolutionCaptureEnabled = true
+        // remove if not working
+        photoOutput.maxPhotoDimensions = CMVideoDimensions(width: 416, height: 416)
+        photoOutput.maxPhotoQualityPrioritization = .balanced
         
         updateVideoOutputConnection()
         
@@ -310,7 +311,9 @@ class Camera: NSObject {
             
             let isFlashAvailable = self.deviceInput?.device.isFlashAvailable ?? false
             photoSettings.flashMode = isFlashAvailable ? .auto : .off
-            photoSettings.isHighResolutionPhotoEnabled = true
+            //photoSettings.isHighResolutionPhotoEnabled = false
+            // remove if not working
+            photoSettings.maxPhotoDimensions = CMVideoDimensions(width: 416, height: 416)
             if let previewPhotoPixelFormatType = photoSettings.availablePreviewPhotoPixelFormatTypes.first {
                 photoSettings.previewPhotoFormat = [kCVPixelBufferPixelFormatTypeKey as String: previewPhotoPixelFormatType]
             }
@@ -372,5 +375,3 @@ fileprivate extension UIScreen {
         }
     }
 }
-
-

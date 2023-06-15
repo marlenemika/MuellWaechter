@@ -1,6 +1,6 @@
 //
 //  Coordinator.swift
-//  WasteClassification
+//  MuellWaechter
 //
 //  Created by Marlene Mika on 29.03.23.
 //
