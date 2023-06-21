@@ -22,17 +22,17 @@ class Detection {
     
     func initialise() {
         do {
-            var model: VNCoreMLModel
+            var model: VNCoreMLModel?
             if UserDefaults.standard.integer(forKey: "modelId") == 1 {
                 model = try VNCoreMLModel(for: yolov7(configuration: MLModelConfiguration()).model)
             }
             else if UserDefaults.standard.integer(forKey: "modelId") == 2 {
                 model = try VNCoreMLModel(for: _2yolov7(configuration: MLModelConfiguration()).model)
             }
-            else {
-                exit(0)
-            }
-            self.request = VNCoreMLRequest(model: model)
+//            else {
+//                exit(0)
+//            }
+            self.request = VNCoreMLRequest(model: model!)
             self.ready = true
         }
         catch {

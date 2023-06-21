@@ -21,7 +21,7 @@ class Labeling {
         let context = UIGraphicsGetCurrentContext()
         
         for detection in detections {
-            let colour: CGColor?
+            var colour: CGColor?
             // differentiate between model version
             if UserDefaults.standard.integer(forKey: "modelId") == 1 {
                 // set colour of bounding box
@@ -42,10 +42,11 @@ class Labeling {
                     colour = CGColor(red: 0, green: 255, blue: 0, alpha: 1)
                 }
             }
-            // on errors quit application
-            else {
-                exit(0)
-            }
+
+//            on errors quit application
+//            else {
+//                exit(0)
+//            }
             
             let boundingBox = detection.rectangle
             
@@ -55,7 +56,7 @@ class Labeling {
             // confidence score in percentage
             let confidence = String(format: "%.1f", detection.confidence * 100) + "%"
             
-            self.drawTextLabel(context: context, boundingBox: boundingBox, colour: colour, confidence: confidence)
+            self.drawTextLabel(context: context, boundingBox: boundingBox, colour: colour!, confidence: confidence)
             
         }
         
