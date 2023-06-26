@@ -159,9 +159,6 @@ class Camera: NSObject {
         self.photoOutput = photoOutput
         self.videoOutput = videoOutput
         
-        //photoOutput.isHighResolutionCaptureEnabled = true
-        // remove if not working
-        photoOutput.maxPhotoDimensions = CMVideoDimensions(width: 416, height: 416)
         photoOutput.maxPhotoQualityPrioritization = .balanced
         
         updateVideoOutputConnection()
