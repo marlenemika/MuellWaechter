@@ -21,13 +21,15 @@ class Detection {
     }
     
     func initialise() {
+        let config = MLModelConfiguration()
+        config.computeUnits = .cpuAndNeuralEngine
         do {
             var model: VNCoreMLModel?
             if UserDefaults.standard.integer(forKey: "modelId") == 1 {
-                model = try VNCoreMLModel(for: yolov7(configuration: MLModelConfiguration()).model)
+                model = try VNCoreMLModel(for: yolov7(configuration: config).model)
             }
             else if UserDefaults.standard.integer(forKey: "modelId") == 2 {
-                model = try VNCoreMLModel(for: _2yolov7(configuration: MLModelConfiguration()).model)
+                model = try VNCoreMLModel(for: _2yolov7(configuration: config).model)
             }
 //            else {
 //                exit(0)

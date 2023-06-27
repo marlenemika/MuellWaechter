@@ -159,7 +159,7 @@ class Camera: NSObject {
         self.photoOutput = photoOutput
         self.videoOutput = videoOutput
         
-        photoOutput.maxPhotoQualityPrioritization = .balanced
+        photoOutput.maxPhotoQualityPrioritization = .speed
         
         updateVideoOutputConnection()
         
