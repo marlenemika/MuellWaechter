@@ -12,6 +12,8 @@ class Labeling {
     private var objectsBiov2: [String] = ["feather", "flower", "egg", "kitchen paper", "apple", "foliage", "soil", "egg carton", "orange", "bone"]
     private var objectsNonBiov2: [String] = ["cigarette", "pill", "plastic cup", "plastic bag", "glass", "face mask", "ceramic", "can", "battery", "stone"]
     
+    let modelId = UserDefaults.standard.integer(forKey: "modelId")
+    
     func drawBoundingBoxAndTextLabel(detections: [DetectedObject], image: UIImage) -> UIImage {
         let imageSize = image.size
         UIGraphicsBeginImageContextWithOptions(imageSize, false, 0.0)
@@ -23,30 +25,15 @@ class Labeling {
         for detection in detections {
             var colour: CGColor?
             // differentiate between model version
-            if UserDefaults.standard.integer(forKey: "modelId") == 1 {
+            if modelId == 1 {
                 // set colour of bounding box
-                if detection.label == "0" {
-                    colour = CGColor(red: 255, green: 0, blue: 0, alpha: 1)
-                }
-                else {
-                    colour = CGColor(red: 0, green: 255, blue: 0, alpha: 1)
-                }
+                colour = detection.label == "0" ? CGColor(red: 255, green: 0, blue: 0, alpha: 1) : CGColor(red: 0, green: 255, blue: 0, alpha: 1)
             }
             
-            else if UserDefaults.standard.integer(forKey: "modelId") == 2 {
+            else if modelId == 2 {
                 // set colour of bounding box
-                if objectsNonBiov2.contains(detection.label) {
-                    colour = CGColor(red: 255, green: 0, blue: 0, alpha: 1)
-                }
-                else {
-                    colour = CGColor(red: 0, green: 255, blue: 0, alpha: 1)
-                }
+                colour = objectsNonBiov2.contains(detection.label) ? CGColor(red: 255, green: 0, blue: 0, alpha: 1) : CGColor(red: 0, green: 255, blue: 0, alpha: 1)
             }
-
-//            on errors quit application
-//            else {
-//                exit(0)
-//            }
             
             let boundingBox = detection.rectangle
             

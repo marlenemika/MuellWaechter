@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		47104EFC29D4E47E0022E521 /* SwiftUIGIF in Frameworks */ = {isa = PBXBuildFile; productRef = 47104EFB29D4E47E0022E521 /* SwiftUIGIF */; };
 		47104EFE29D4E4BE0022E521 /* LoadingPop.gif in Resources */ = {isa = PBXBuildFile; fileRef = 47104EFD29D4E4BE0022E521 /* LoadingPop.gif */; };
+		BF362DE82A54B35300046AA6 /* yolov7.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = BF362DE62A54B35300046AA6 /* yolov7.mlmodel */; };
+		BF362DE92A54B35300046AA6 /* 2yolov7.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = BF362DE72A54B35300046AA6 /* 2yolov7.mlmodel */; };
 		BF65596E29D483B5000C93F0 /* MuellWaechterApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF65596D29D483B5000C93F0 /* MuellWaechterApp.swift */; };
 		BF65597029D483B5000C93F0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF65596F29D483B5000C93F0 /* ContentView.swift */; };
 		BF65597229D483B8000C93F0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BF65597129D483B8000C93F0 /* Assets.xcassets */; };
@@ -23,15 +25,15 @@
 		BF65598C29D48558000C93F0 /* SelectedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF65598B29D48558000C93F0 /* SelectedImageView.swift */; };
 		BF65598E29D4857C000C93F0 /* Labeling.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF65598D29D4857C000C93F0 /* Labeling.swift */; };
 		BF65599029D48597000C93F0 /* Detection.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF65598F29D48597000C93F0 /* Detection.swift */; };
-		BF65599229D485CE000C93F0 /* yolov7.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = BF65599129D485CE000C93F0 /* yolov7.mlmodel */; };
 		BFDB21082A3AA32800F6EABB /* TermsConditionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFDB21072A3AA32800F6EABB /* TermsConditionsView.swift */; };
 		BFDB210A2A3AA33C00F6EABB /* DisclaimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFDB21092A3AA33C00F6EABB /* DisclaimerView.swift */; };
 		BFDB210C2A3AA35100F6EABB /* ImprintView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFDB210B2A3AA35100F6EABB /* ImprintView.swift */; };
-		BFDB210E2A432C5000F6EABB /* 2yolov7.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = BFDB210D2A432C5000F6EABB /* 2yolov7.mlmodel */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		47104EFD29D4E4BE0022E521 /* LoadingPop.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = LoadingPop.gif; path = ../../../../Downloads/LoadingPop.gif; sourceTree = "<group>"; };
+		BF362DE62A54B35300046AA6 /* yolov7.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = yolov7.mlmodel; path = ../../../../../Downloads/other/yolov7.mlmodel; sourceTree = "<group>"; };
+		BF362DE72A54B35300046AA6 /* 2yolov7.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = 2yolov7.mlmodel; path = ../../../../../Downloads/other/2yolov7.mlmodel; sourceTree = "<group>"; };
 		BF65596A29D483B5000C93F0 /* MüllWächter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MüllWächter.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF65596D29D483B5000C93F0 /* MuellWaechterApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MuellWaechterApp.swift; sourceTree = "<group>"; };
 		BF65596F29D483B5000C93F0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -47,11 +49,9 @@
 		BF65598B29D48558000C93F0 /* SelectedImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedImageView.swift; sourceTree = "<group>"; };
 		BF65598D29D4857C000C93F0 /* Labeling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Labeling.swift; sourceTree = "<group>"; };
 		BF65598F29D48597000C93F0 /* Detection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Detection.swift; sourceTree = "<group>"; };
-		BF65599129D485CE000C93F0 /* yolov7.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = yolov7.mlmodel; path = ../../../../../Downloads/yolov7.mlmodel; sourceTree = "<group>"; };
 		BFDB21072A3AA32800F6EABB /* TermsConditionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsConditionsView.swift; sourceTree = "<group>"; };
 		BFDB21092A3AA33C00F6EABB /* DisclaimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisclaimerView.swift; sourceTree = "<group>"; };
 		BFDB210B2A3AA35100F6EABB /* ImprintView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImprintView.swift; sourceTree = "<group>"; };
-		BFDB210D2A432C5000F6EABB /* 2yolov7.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = 2yolov7.mlmodel; path = ../../../../../Downloads/2yolov7.mlmodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,8 +115,8 @@
 		BF65598529D484EC000C93F0 /* ObjectDetection */ = {
 			isa = PBXGroup;
 			children = (
-				BFDB210D2A432C5000F6EABB /* 2yolov7.mlmodel */,
-				BF65599129D485CE000C93F0 /* yolov7.mlmodel */,
+				BF362DE72A54B35300046AA6 /* 2yolov7.mlmodel */,
+				BF362DE62A54B35300046AA6 /* yolov7.mlmodel */,
 				BF65598D29D4857C000C93F0 /* Labeling.swift */,
 				BF65598F29D48597000C93F0 /* Detection.swift */,
 			);
@@ -215,14 +215,14 @@
 				BF65598A29D4853B000C93F0 /* ViewfinderView.swift in Sources */,
 				BF65597C29D48426000C93F0 /* HomeView.swift in Sources */,
 				BFDB21082A3AA32800F6EABB /* TermsConditionsView.swift in Sources */,
-				BFDB210E2A432C5000F6EABB /* 2yolov7.mlmodel in Sources */,
-				BF65599229D485CE000C93F0 /* yolov7.mlmodel in Sources */,
 				BF65597E29D48462000C93F0 /* DataModel.swift in Sources */,
+				BF362DE82A54B35300046AA6 /* yolov7.mlmodel in Sources */,
 				BF65598229D484B9000C93F0 /* Coordinator.swift in Sources */,
 				BF65597029D483B5000C93F0 /* ContentView.swift in Sources */,
 				BF65599029D48597000C93F0 /* Detection.swift in Sources */,
 				BF65596E29D483B5000C93F0 /* MuellWaechterApp.swift in Sources */,
 				BF65598C29D48558000C93F0 /* SelectedImageView.swift in Sources */,
+				BF362DE92A54B35300046AA6 /* 2yolov7.mlmodel in Sources */,
 				BF65598E29D4857C000C93F0 /* Labeling.swift in Sources */,
 				BF65598429D484D1000C93F0 /* ImageView.swift in Sources */,
 				BF65598029D48482000C93F0 /* ImagePickerView.swift in Sources */,

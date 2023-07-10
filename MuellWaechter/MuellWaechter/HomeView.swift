@@ -237,6 +237,13 @@ struct HomeView: View {
                                 }
                             }
                         }
+                        Spacer()
+                        
+                        HStack {
+                            Image("IW").resizable().scaledToFit()
+                            Image("digital").resizable().scaledToFit().padding()
+                            Image("BW").resizable().scaledToFit()
+                        }
                     }.padding()
                 .navigationTitle("Einstellungen")
                 .toolbar(content: {
@@ -254,7 +261,7 @@ struct HomeView: View {
             NavigationView {
                 ScrollView {
                     VStack {
-                        Text("Mit dieser Funktion kann überprüft werden, ob Bio-Abfallbehälter ordentlich sortiert ist oder ob sich darin Fremdstoffe befinden. Dazu kann entweder ein bereits bestehendes Bild aus der Galerie ausgewählt werden oder ein Bild mit der Kamera aufgenommen werden. Alternativ kann auch mit einer Live-Ansicht der Biomüll auf Fremdstoffe überprüft werden.")
+                        Text("Mit dieser Funktion kann überprüft werden, ob Bio-Abfallbehälter ordentlich sortiert sind oder ob sich darin Fremdstoffe befinden. Dazu kann entweder ein bereits bestehendes Bild aus der Galerie ausgewählt werden oder ein Bild mit der Kamera aufgenommen werden. Alternativ kann auch mit einer Live-Ansicht der Biomüll auf Fremdstoffe überprüft werden.")
                         Image("checkBio")
                             .resizable()
                             .scaledToFit()
