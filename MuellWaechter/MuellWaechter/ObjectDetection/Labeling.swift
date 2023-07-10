@@ -6,21 +6,24 @@
 //
 
 import Foundation
-import UIKit
+import SwiftUI
 
-class Labeling {
+class Labeling{
+    let labels = ["non-organic waste", "organic waste"]
+
     private var objectsBiov2: [String] = ["feather", "flower", "egg", "kitchen paper", "apple", "foliage", "soil", "egg carton", "orange", "bone"]
-    private var objectsNonBiov2: [String] = ["cigarette", "pill", "plastic cup", "plastic bag", "glass", "face mask", "ceramic", "can", "battery", "stone"]
+      private var objectsNonBiov2: [String] = ["cigarette", "pill", "plastic cup", "plastic bag", "glass", "face mask", "ceramic", "can", "battery", "stone"]
     
     let modelId = UserDefaults.standard.integer(forKey: "modelId")
     
-    func drawBoundingBoxAndTextLabel(detections: [DetectedObject], image: UIImage) -> UIImage {
-        let imageSize = image.size
-        UIGraphicsBeginImageContextWithOptions(imageSize, false, 0.0)
-        
+    ///  Add detections to picture
+    func labelImage(image: UIImage, detections: [DetectedObject]) -> UIImage?{
+        // setting up context
+        UIGraphicsBeginImageContext(image.size)
+        // image is drawn as background in current context
         image.draw(at: CGPoint.zero)
-        
-        let context = UIGraphicsGetCurrentContext()
+        // Get the current context
+        let context = UIGraphicsGetCurrentContext()!
         
         for detection in detections {
             var colour: CGColor?
@@ -35,67 +38,69 @@ class Labeling {
                 colour = objectsNonBiov2.contains(detection.label) ? CGColor(red: 255, green: 0, blue: 0, alpha: 1) : CGColor(red: 0, green: 255, blue: 0, alpha: 1)
             }
             
+            let label = String(format:"%.1f", detection.confidence*100)+"%"
             let boundingBox = detection.rectangle
             
-            // draw bounding box
-            self.drawBoundingBox(context: context, boundingBox: boundingBox, colour: colour!)
+            self.drawBox(context: context, bounds: boundingBox, color: colour!)
             
-            // confidence score in percentage
-            let confidence = String(format: "%.1f", detection.confidence * 100) + "%"
+            let textBounds = getTextRect(bigBox: boundingBox)
             
-            self.drawTextLabel(context: context, boundingBox: boundingBox, colour: colour!, confidence: confidence)
+            self.drawTextBox(context: context, drawText: label, bounds: textBounds, color: colour!)
             
         }
         
-        // save context as UIImage
-        let modifiedImage = UIGraphicsGetImageFromCurrentImageContext()
+        // Save the context as a new UIImage
+        let myImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         
-        return modifiedImage!
+        // Return modified image
+        return myImage
     }
     
-    func drawBoundingBox(context: CGContext?, boundingBox: CGRect, colour: CGColor?) {
-        context?.setStrokeColor(colour!)
-        
-        // adjust border width so that object is not hidden (especially for small bounding boxes)
-        if boundingBox.height < 125 {
-            context?.setLineWidth(10)
+    // Bounding Box
+    func drawBox(context: CGContext, bounds :CGRect, color: CGColor){
+        context.setStrokeColor(color)
+        context.setLineWidth(bounds.height*0.02)
+        if bounds.height < 125 {
+            context.setLineWidth(10)
         }
-        else {
-            context?.setLineWidth(boundingBox.height * 0.02)
-        }
-        context?.addRect(boundingBox)
-        context?.strokePath()
+        context.addRect(bounds)
+        context.drawPath(using: .stroke)
     }
     
-    func drawTextLabel(context: CGContext?, boundingBox: CGRect, colour: CGColor?, confidence: String) {
-        let label: CGRect
+    // Text Rectangle
+    func getTextRect(bigBox: CGRect) -> CGRect {
+        var width: CGFloat = bigBox.width + bigBox.height*0.02
         let height: CGFloat = 50
-        var width: CGFloat = 0
-        
-        // adjust height so that label text is always readable
-        if boundingBox.height < 125 {
-            width = boundingBox.height * 0.25
+        if bigBox.height < 125 {
+            width = bigBox.width + 10
         }
-        else {
-            width = boundingBox.width + boundingBox.height * 0.02
+        // prevent overflow
+        if height > bigBox.height*0.25 {
+            // give text rectangle same width as bounding box
+            if bigBox.height < 125 {
+                return CGRect(x: bigBox.minX - 5, y: bigBox.maxY, width: width, height: height)
+            } else {
+                return CGRect(x: bigBox.minX - bigBox.height*0.01, y: bigBox.maxY, width: width, height: height)
+            }
         }
-        
-        // give label same width as bounding box and prevent overflow
-        if height > boundingBox.height * 0.25 && boundingBox.height < 125 {
-            label = CGRect(x: boundingBox.minX - 5, y: boundingBox.maxY, width: width, height: height)
+        // give text rectangle same width as bounding box
+        if bigBox.height < 125 {
+            return CGRect(x: bigBox.minX - 15, y: bigBox.maxY, width: width, height: height)
         } else {
-            let labelX = boundingBox.minX - (boundingBox.height < 125 ? 15 : boundingBox.height * 0.01)
-            let labelY = boundingBox.maxY - (height > boundingBox.height * 0.25 ? height : 0)
-            label = CGRect(x: labelX, y: labelY, width: width, height: height)
+            return CGRect(x: bigBox.minX - bigBox.height*0.01, y: bigBox.maxY - height, width: width, height: height)
         }
+    }
+    
+    // Text
+    func drawTextBox(context: CGContext, drawText text: String, bounds: CGRect, color: CGColor) {
         
-        // draw text box
-        context?.setFillColor(colour!)
-        context?.addRect(label)
-        context?.fill(label)
-
-        // add text
+        //text box
+        context.setFillColor(color)
+        context.addRect(bounds)
+        context.drawPath(using: .fill)
+        
+        //text
         let textColor = UIColor.black
         let textFont = UIFont(name: "Helvetica", size: 35)!
         
@@ -103,6 +108,8 @@ class Labeling {
             NSAttributedString.Key.font: textFont,
             NSAttributedString.Key.foregroundColor: textColor
         ] as [NSAttributedString.Key : Any]
-        confidence.draw(in: label.offsetBy(dx: boundingBox.width * 0.05, dy: 0), withAttributes: textFontAttributes)
+        
+        text.draw(in: bounds.offsetBy(dx: bounds.width*0.05, dy: bounds.height*0.05), withAttributes: textFontAttributes)
     }
+    
 }
