@@ -24,9 +24,9 @@ struct HomeView: View {
     @State private var showSettings: Bool = false
     @State private var id: Int = UserDefaults.standard.value(forKey: "modelId") == nil ? 1 : UserDefaults.standard.integer(forKey: "modelId")
     
-    private var objectsBiov1: [String] = ["Apfel", "Eierkarton", "Eierschale", "Erde", "Feder", "Gras", "Kaffeefilter", "Küchenpapier", "Laub", "Sonnenblume\n"]
+    private var objectsBiov1: [String] = ["Apfel", "Eierkarton", "Eierschale", "Feder", "Gras", "Küchenpapier", "Laub", "Orangenschale", "Sonnenblume\n"]
     private var objectsNonBiov1: [String] = ["Aludose", "Batterie","Gesichtsmaske", "Glas", "Keramikteller", "Kieselstein", "Plastikbecher", "Plastiktüte", "Tablette", "Zigarettenstümmel\n"]
-    private var objectsBiov2: [String] = ["Apfel", "Eierkarton", "Eierschale", "Erde", "Feder", "Knochen", "Küchenpapier", "Laub", "Orangenschale", "Sonnenblume\n"]
+    private var objectsBiov2: [String] = ["Apfel", "Eierkarton", "Eierschale", "Blumenerde", "Feder", "Knochen", "Küchenpapier", "Laub", "Orangenschale", "Sonnenblume\n"]
     private var objectsNonBiov2: [String] = ["Aludose", "Batterie", "Glas", "Gesichtsmaske", "Keramikteller", "Kieselstein", "Plastikbecher", "Plastiktüte", "Tablette", "Zigarettenstümmel\n"]
     
     var body: some View {

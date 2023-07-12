@@ -231,13 +231,13 @@ fileprivate extension Image.Orientation {
     init(_ cgImageOrientation: CGImagePropertyOrientation) {
         switch cgImageOrientation {
         case .up: self = .up
-        case .upMirrored: self = .upMirrored
-        case .down: self = .down
-        case .downMirrored: self = .downMirrored
-        case .left: self = .left
-        case .leftMirrored: self = .leftMirrored
-        case .right: self = .right
-        case .rightMirrored: self = .rightMirrored
+        case .upMirrored: self = .up
+        case .down: self = .up
+        case .downMirrored: self = .up
+        case .left: self = .up
+        case .leftMirrored: self = .up
+        case .right: self = .up
+        case .rightMirrored: self = .up
         }
     }
 }
