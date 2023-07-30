@@ -23,6 +23,9 @@ struct HomeView: View {
     @State private var showObjects: Bool = false
     @State private var showSettings: Bool = false
     @State private var id: Int = UserDefaults.standard.value(forKey: "modelId") == nil ? 1 : UserDefaults.standard.integer(forKey: "modelId")
+    @State private var showTACAgreement: Bool = !UserDefaults.standard.bool(forKey: "agreedTAC")
+    @State private var agreedToggle: Bool = false
+    @State private var agreedToggle2: Bool = false
     
     private var objectsBiov1: [String] = ["Apfel", "Blumenerde", "Eierkarton", "Eierschale", "Feder", "Küchenpapier", "Laub", "Orangenschale", "Sonnenblume\n"]
     private var objectsNonBiov1: [String] = ["Aludose", "Batterie","Gesichtsmaske", "Glas", "Keramikteller", "Kieselstein", "Plastikbecher", "Plastiktüte", "Tablette", "Zigarettenstümmel\n"]
@@ -326,6 +329,53 @@ struct HomeView: View {
                 })
             }
         })
+        
+        .sheet(isPresented: $showTACAgreement, content: {
+            ScrollView {
+            VStack {
+                Text("Willkommen beim **MüllWächter**!")
+                    .font(.title).padding().frame(maxWidth: .infinity, alignment: .center).multilineTextAlignment(.center)
+                    
+                Text("Der MüllWächter verwendet eine Künstliche Intelligenz, weswegen es zu fehlerhaften Antworten kommen kann. Bevor Sie den MüllWächter benutzen, lesen Sie bitte die Nutzungsbedingungen und den Haftungsausschluss sorgfältig durch.")
+                    .multilineTextAlignment(.leading)
+                    .padding()
+                
+                Collapsible(
+                    label: { Text("Nutzungsbedingungen") },
+                    content: {
+                        Text("Durch die Nutzung dieser iOS-App stimmen Sie den folgenden Bedingungen zu:\nDiese App ist nur für den persönlichen Gebrauch bestimmt. Sie dürfen die App nicht für kommerzielle Zwecke nutzen. Sie dürfen die App nicht dekompilieren, disassemblieren oder auf andere Weise versuchen, den Quellcode der App zu ermitteln. Sie dürfen die App nicht in einer Weise nutzen, die gegen geltende Gesetze oder Vorschriften verstößt. Sie dürfen keine Inhalte in der App veröffentlichen, die verleumderisch, beleidigend oder anderweitig unangemessen sind. Wir behalten uns das Recht vor, die App jederzeit ohne Vorankündigung zu ändern oder einzustellen. Wir haften nicht für Schäden, die durch die Nutzung der App entstehen können. Durch die Nutzung der App erklären Sie sich damit einverstanden, dass wir personenbezogene Daten von Ihnen erfassen und nutzen dürfen, wie in unserer Datenschutzrichtlinie beschrieben.").padding()
+                    }
+                ).padding()
+                
+                Collapsible(
+                    label: { Text("Haftungsausschluss") },
+                    content: {
+                        VStack {
+                            Text("Durch die Nutzung des **MüllWächters** erklären Sie sich mit den folgenden Bedingungen einverstanden.\n\n**Genauigkeit der Ergebnisse**\nDer **MüllWächter** ist ein Hilfsmittel, das entwickelt wurde, um Benutzern bei der Identifizierung von potenziellen Biomüllprodukten zu unterstützen. Sie sollte jedoch nicht als alleinige Grundlage für Entscheidungen über die Abfallentsorgung oder sonstige Maßnahmen herangezogen werden.\n\n**Eigenverantwortung**\nDie App bietet keine Garantie für die absolute Genauigkeit der Ergebnisse bei der Klassifizierung von Objekten als Biomüllprodukte oder Nicht-Biomüllprodukte. Die Erkennungsergebnisse basieren auf Algorithmen und maschinellem Lernen, die auf einer umfangreichen Datenbank von Objekten und deren Merkmalen beruhen. Dennoch können Fehler oder Fehlklassifikationen auftreten.\n\n**Ergänzende Informationsquelle**\nDie Entscheidung über die korrekte Entsorgung von Abfällen obliegt allein dem Benutzer. Es wird empfohlen, die von der App bereitgestellten Ergebnisse als zusätzliche Informationsquelle zu betrachten und diese mit anderen verfügbaren Informationen und den örtlichen Vorschriften zur Abfallentsorgung abzugleichen.\n\n**Haftungsausschluss für Schäden**\nDie Entwickler der App übernehmen keine Haftung für Schäden, die durch die Nutzung der App oder die Verwendung der von der App bereitgestellten Informationen entstehen. Dies schließt direkte, indirekte, zufällige, besondere oder Folgeschäden ein.\n\n**Externe Quellen und Dienste**\nDer **MüllWächter** kann auf externe Quellen oder Dienste verweisen, die von Dritten betrieben werden. Die Entwickler der App haben keine Kontrolle über solche externen Inhalte und übernehmen keine Verantwortung für deren Verfügbarkeit, Genauigkeit, Sicherheit oder Rechtmäßigkeit.\n\n**Kein Ersatz für professionelle Beratung**\nDer **MüllWächter** ersetzt nicht die Beratung durch qualifizierte Fachkräfte, Abfallexperten oder lokale Behörden. Im Zweifelsfall sollte immer auf die Empfehlungen und Vorschriften der örtlichen Abfallentsorgungsstellen zurückgegriffen werden.").multilineTextAlignment(.leading)
+                        }.padding()
+                    }
+                )
+                .padding()
+                
+                Divider()
+                
+                Toggle("Ich habe die Nutzungsbedingungen gelesen und akzeptiere diese.", isOn: $agreedToggle)
+                    .multilineTextAlignment(.leading)
+                    .padding()
+                Toggle("Ich habe den Haftungsausschluss gelesen und bin damit einverstanden.", isOn: $agreedToggle2)
+                    .multilineTextAlignment(.leading)
+                    .padding()
+                
+                Button {
+                    UserDefaults.standard.set(true, forKey: "agreedTAC")
+                    showTACAgreement = false
+                } label: {
+                    Text("Fertig")
+                }
+                .disabled(!(agreedToggle && agreedToggle2))
+            }.padding()
+        }.interactiveDismissDisabled()
+        })
     }
     
     @ViewBuilder
@@ -341,6 +391,7 @@ struct HomeView: View {
 extension UIApplication {
     class func isFirstLaunch() -> Bool {
         if UserDefaults.standard.object(forKey: "modelId") == nil {
+            UserDefaults.standard.set(false, forKey: "agreedTAC")
             UserDefaults.standard.set(1, forKey: "modelId")
             return true
         }
