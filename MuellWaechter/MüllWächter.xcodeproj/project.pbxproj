@@ -176,10 +176,10 @@
 			};
 			buildConfigurationList = BF65596529D483B5000C93F0 /* Build configuration list for PBXProject "MüllWächter" */;
 			compatibilityVersion = "Xcode 14.0";
-			developmentRegion = en;
+			developmentRegion = de;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				en,
+				de,
 			);
 			mainGroup = BF65596129D483B5000C93F0;
 			packageReferences = (
