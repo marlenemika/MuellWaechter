@@ -23,6 +23,7 @@
 		BF65598C29D48558000C93F0 /* SelectedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF65598B29D48558000C93F0 /* SelectedImageView.swift */; };
 		BF65598E29D4857C000C93F0 /* Labeling.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF65598D29D4857C000C93F0 /* Labeling.swift */; };
 		BF65599029D48597000C93F0 /* Detection.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF65598F29D48597000C93F0 /* Detection.swift */; };
+		BFA2183D2A76D83100967255 /* Collapsible.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA2183C2A76D83100967255 /* Collapsible.swift */; };
 		BFDB21082A3AA32800F6EABB /* TermsConditionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFDB21072A3AA32800F6EABB /* TermsConditionsView.swift */; };
 		BFDB210A2A3AA33C00F6EABB /* DisclaimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFDB21092A3AA33C00F6EABB /* DisclaimerView.swift */; };
 		BFDB210C2A3AA35100F6EABB /* ImprintView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFDB210B2A3AA35100F6EABB /* ImprintView.swift */; };
@@ -47,6 +48,7 @@
 		BF65598B29D48558000C93F0 /* SelectedImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedImageView.swift; sourceTree = "<group>"; };
 		BF65598D29D4857C000C93F0 /* Labeling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Labeling.swift; sourceTree = "<group>"; };
 		BF65598F29D48597000C93F0 /* Detection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Detection.swift; sourceTree = "<group>"; };
+		BFA2183C2A76D83100967255 /* Collapsible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collapsible.swift; sourceTree = "<group>"; };
 		BFDB21072A3AA32800F6EABB /* TermsConditionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsConditionsView.swift; sourceTree = "<group>"; };
 		BFDB21092A3AA33C00F6EABB /* DisclaimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisclaimerView.swift; sourceTree = "<group>"; };
 		BFDB210B2A3AA35100F6EABB /* ImprintView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImprintView.swift; sourceTree = "<group>"; };
@@ -100,6 +102,7 @@
 				BF65597F29D48482000C93F0 /* ImagePickerView.swift */,
 				BF65598129D484B9000C93F0 /* Coordinator.swift */,
 				BF65598329D484D1000C93F0 /* ImageView.swift */,
+				BFA2183C2A76D83100967255 /* Collapsible.swift */,
 			);
 			path = MuellWaechter;
 			sourceTree = "<group>";
@@ -177,7 +180,6 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
-				Base,
 			);
 			mainGroup = BF65596129D483B5000C93F0;
 			packageReferences = (
@@ -212,6 +214,7 @@
 			files = (
 				BFDB210C2A3AA35100F6EABB /* ImprintView.swift in Sources */,
 				BF65598829D48512000C93F0 /* Camera.swift in Sources */,
+				BFA2183D2A76D83100967255 /* Collapsible.swift in Sources */,
 				BF65598A29D4853B000C93F0 /* ViewfinderView.swift in Sources */,
 				BF65597C29D48426000C93F0 /* HomeView.swift in Sources */,
 				BFDB21082A3AA32800F6EABB /* TermsConditionsView.swift in Sources */,
