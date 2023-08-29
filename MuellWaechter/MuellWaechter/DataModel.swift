@@ -222,22 +222,6 @@ fileprivate extension CIImage {
     var image: Image? {
         let ciContext = CIContext()
         guard let cgImage = ciContext.createCGImage(self, from: self.extent) else { return nil }
-        return Image(decorative: cgImage, scale: 1, orientation: .up)
-    }
-}
-
-fileprivate extension Image.Orientation {
-    
-    init(_ cgImageOrientation: CGImagePropertyOrientation) {
-        switch cgImageOrientation {
-        case .up: self = .up
-        case .upMirrored: self = .upMirrored
-        case .down: self = .down
-        case .downMirrored: self = .downMirrored
-        case .left: self = .left
-        case .leftMirrored: self = .leftMirrored
-        case .right: self = .right
-        case .rightMirrored: self = .rightMirrored
-        }
+        return Image(decorative: cgImage, scale: 1)
     }
 }
